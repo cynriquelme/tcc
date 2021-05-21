@@ -1,0 +1,76 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Ciudades{% endblock %}
+
+{% block background %}{% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+    <h1>Ciudades</h1>
+{% endblock %}
+
+{% block content %}
+<div class="card-body">
+    <button type="button" class="btn btn-primary add-new float-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Agregar</button>
+</div>
+<div class="table-responsive">
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th class='bg-primary'><font color='white'>Descripciones</font></th>
+        <th class='bg-primary'><font color='white'>Acciones</font></th>
+      </tr>
+    </thead>
+            <tbody>
+                {% for city in cities %}
+                <tr>
+                    <td>
+                        {{ city }}
+                    </td>
+                    <td>
+                        <button type="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-fw fa-edit"></i></button>
+                        <button type="button"><i class="fa fa-trash"></i></button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+  </table>
+</div>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Ciudades</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <form action="{% url 'cities'  %}" method="post">
+      <div class="modal-body">
+            <div class="form-group">
+                <label>Descripción:</label>
+
+                  
+                <input type="text" class="form-control form-control" placeholder="Ingrese la descripción" name="ciudad" id="{{ city.id }}" value="">
+               
+           
+            </div>
+      </div>
+    </form>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" value="save">Guardar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
