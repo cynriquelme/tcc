@@ -115,7 +115,6 @@ class TypeReport(models.Model):
         return self.description
 
 
-
 class Person(models.Model):
     type_document = models.ForeignKey(TypeDocument, on_delete=models.CASCADE, default=0, verbose_name="Tipo de Documento")
     numer_document = models.CharField(max_length=50, verbose_name="Número de Documento")
