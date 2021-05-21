@@ -7,7 +7,6 @@ from .models import Category
 from .models import SubCategory
 from .models import Departament
 from .models import Person
-from .models import Registre
 from .models import TypeReport
 from .models import Report
 
@@ -22,6 +21,5 @@ admin.site.register(Category, CrudAdmin)
 admin.site.register(SubCategory, CrudAdmin)
 admin.site.register(Departament, CrudAdmin)
 admin.site.register(Person, CrudAdmin)
-admin.site.register(Registre, CrudAdmin)
 admin.site.register(TypeReport, CrudAdmin)
 admin.site.register(Report, CrudAdmin)
