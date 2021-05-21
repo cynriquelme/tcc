@@ -9,6 +9,9 @@ from .models import Departament
 from .models import Person
 from .models import TypeReport
 from .models import Report
+from .models import Registre
+from .models import CodeQR
+from .models import Coordinate
 
 class CrudAdmin(admin.ModelAdmin):
     readonly_fields = ('create_date', 'update_date')
@@ -23,3 +26,6 @@ admin.site.register(Departament, CrudAdmin)
 admin.site.register(Person, CrudAdmin)
 admin.site.register(TypeReport, CrudAdmin)
 admin.site.register(Report, CrudAdmin)
+admin.site.register(Registre, CrudAdmin)
+admin.site.register(CodeQR, CrudAdmin)
+admin.site.register(Coordinate, CrudAdmin)

@@ -199,11 +199,11 @@ class Coordinate(models.Model):
     report = models.ForeignKey(Report, on_delete=models.CASCADE, default=0, verbose_name="Reporte")
     create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
-
     class Meta:
         verbose_name = 'Coordenada'
         verbose_name_plural = 'Coordenadas'
         ordering = ["-create_date"]
 
-    def __str__(self):
+    def __float__(self):
         return self.c_latitude
+    
