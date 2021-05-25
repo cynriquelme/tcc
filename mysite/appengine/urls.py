@@ -19,6 +19,7 @@ from core import views as core_views
 from crud import views as crud_views
 from django.conf import settings
 from django.conf.urls.static import static
+from registers.urls import registers_patterns
 
 from django.conf import settings
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path('', core_views.home, name="home"),
     path('about/', core_views.about, name="about"),
     path('polls/', include('polls.urls')),
+    path('registers/', include(registers_patterns)),
     path('cities/', crud_views.list_cities, name='cities'),
     path('admin/', admin.site.urls),
 ]

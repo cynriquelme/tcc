@@ -1,13 +1,5 @@
 from django.contrib import admin
-from .models import TypeDocument
-from .models import City
-from .models import Country
-from .models import Sexe
-from .models import Departament
-from .models import Person
-from .models import TypeReport
-from .models import Report
-from .models import Coordinate
+from .models import TypeDocument, City, Country, Sexe, Departament, Person, TypeReport, Report, Coordinate
 
 class CrudAdmin(admin.ModelAdmin):
     readonly_fields = ('create_date', 'update_date')

@@ -1,0 +1,16 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Registros{% endblock %}
+{% block content %}
+{% include 'registers/includes/register_menu.html' %}
+<main role="main">
+  <div class="container">
+        <div>
+         <h2>{{ register.description}}</h2>
+          {% if request.user.is_staff %}
+            <p><a href="{% url 'registers:update' register.id %}">Editar</a></p>
+          {% endif %}
+        </div>
+  </div>
+</main>
+{% endblock %}
