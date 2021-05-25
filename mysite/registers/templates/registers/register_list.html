@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Registros{% endblock %}
+{% block content %}
+{% include 'registers/includes/register_menu.html' %}
+<main role="main">
+  <div class="container mb-4">
+    {% for register in register_list|dictsort:"id" %}
+      <div>
+          <h2>{{ register.description}}</h2>
+          <div>
+            <p>{{register.description|striptags|safe|truncatechars:"200"}}</p>
+            <p>Leer más</p>
+            {% if request.user.is_staff %}
+              <a href="{% url 'registers:update' register.id %}">Editar</a>
+              <a href="{% url 'registers:delete' register.id %}">Borrar</a>
+            {% endif %}
+          </div>
+      </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}
