@@ -1,6 +1,10 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block title %}Borrar Registro{% endblock %}
+{% block background %}{% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
+{% block headers %}
+    <h1>Registros</h1>
+{% endblock %}
 {% block content %}
 {% include 'registers/includes/register_menu.html'%}
 <main role="main">
@@ -10,7 +14,7 @@
         <div>
             <form action="" method="post">{% csrf_token %}
                 <p>¿Estás seguro de que quieres borrar "{{ object }}"?</p>
-                <input type="submit" value="Sí, borrar el Registro" />
+                <input type="submit" class="btn btn-primary btn-block" value="Sí, borrar el Registro" />
             </form>
         </div>
       </div>
