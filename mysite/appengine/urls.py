@@ -30,6 +30,9 @@ urlpatterns = [
     path('registers/', include(registers_patterns)),
     path('cities/', crud_views.list_cities, name='cities'),
     path('admin/', admin.site.urls),
+    # Paths de Auth
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('registration.urls')),
 ]
 
 #Custom titles for admin
