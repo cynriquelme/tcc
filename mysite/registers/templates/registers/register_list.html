@@ -1,6 +1,10 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block title %}Registros{% endblock %}
+{% block background %}{% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
+{% block headers %}
+    <h1>Registros</h1>
+{% endblock %}
 {% block content %}
 {% include 'registers/includes/register_menu.html' %}
 <main role="main">
@@ -9,8 +13,7 @@
       <div>
           <h2>{{ register.description}}</h2>
           <div>
-            <p>{{register.description|striptags|safe|truncatechars:"200"}}</p>
-            <p>Leer más</p>
+            <p>{{register.sub_category|striptags|safe|truncatechars:"200"}}</p>
             {% if request.user.is_staff %}
               <a href="{% url 'registers:update' register.id %}">Editar</a>
               <a href="{% url 'registers:delete' register.id %}">Borrar</a>
