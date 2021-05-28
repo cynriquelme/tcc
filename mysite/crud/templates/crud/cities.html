@@ -48,15 +48,13 @@
       </div>
 
       <!-- Modal body -->
-      <form action="{% url 'cities'  %}" method="post">
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
       <div class="modal-body">
             <div class="form-group">
                 <label>Descripción:</label>
-
-                  
-                <input type="text" class="form-control form-control" placeholder="Ingrese la descripción" name="ciudad" id="{{ city.id }}" value="">
-               
-           
+                <input type="text" class="form-control form-control" placeholder="Ingrese la descripción" name="desciudad">
             </div>
       </div>
     </form>
@@ -64,7 +62,7 @@
       <!-- Modal footer -->
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-success" value="save">Guardar</button>
+        <button type="button" class="btn btn-success" value="save_cities">Guardar</button>
       </div>
 
     </div>
