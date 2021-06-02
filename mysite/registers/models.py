@@ -1,6 +1,7 @@
 from django.db import models
 #from ckeditor.fields import RichTextField
 from django.conf import settings
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     description = models.CharField(max_length=200, verbose_name="Descripción", unique=True)
@@ -36,7 +37,7 @@ class Register(models.Model):
     registration_date = models.DateField(auto_now_add=True, verbose_name="Fecha de Registro")
     status = models.BooleanField(verbose_name="Activo", default=True, help_text="Indica si el registro está Activo o Inactivo.")
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default=0, verbose_name="Subcategoría")
-    usser = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name="Usuario", null=True, default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
 

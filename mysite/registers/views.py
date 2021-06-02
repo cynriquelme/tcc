@@ -22,6 +22,10 @@ class RegisterCreate(CreateView):
     fields = ['sub_category', 'description', 'status']
     success_url = reverse_lazy('registers:registers')
 
+    def get_object(self):
+        # recuperar el objeto que se va a editar
+        return self.request.user
+
     def get_form(self, form_class=None):
         form = super(RegisterCreate, self).get_form()
         # Modificar en tiempo reald

@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
 
   <body>
@@ -54,6 +57,9 @@
                 <a class="nav-link" href="{% url 'signup' %}"><i class="fa fa-fw fa-sign-in"></i> Registrarse</a>
               </li>
             {% else %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-fw fa-user"></i> Perfil</a>
+              </li>
               <li class="nav-item">
                   <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out"></i> Salir</a>
               </li>
@@ -120,7 +126,7 @@
     <script src="{% static 'core/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'core/js/clean-blog.min.js' %}"></script>
     <script src="{% static 'core/js/sweetalert2.js' %}"></script>
-
+    <script src="{% static 'core/js/password.js' %}"></script>
   </body>
 
 </html>
