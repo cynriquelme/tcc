@@ -3,11 +3,13 @@ from .models import Category, Register
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
 from django import forms
+from six import BytesIO
+import qrcode
 
 # Create your views here.
 class RegisterListView(ListView):
@@ -45,5 +47,21 @@ class RegisterUpdate(UpdateView):
 class RegisterDelete(DeleteView):
     model = Register
     success_url = reverse_lazy('registers:registers')
+
+
+def index(request):
+    return HttpResponse('ok')
+
+
+def generate_qrcode(request):
+    data = 'https://www.columbia.edu.py/'
+    img = qrcode.make(data)
+
+    buf = BytesIO()		# BytesIO se da cuenta de leer y escribir bytes en la memoria
+    img.save(buf)
+    image_stream = buf.getvalue()
+
+    response = HttpResponse(image_stream, content_type="image/png")
+    return response
 
     
