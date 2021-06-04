@@ -31,15 +31,22 @@ class RegisterCreate(CreateView):
     def get_form(self, form_class=None):
         form = super(RegisterCreate, self).get_form()
         # Modificar en tiempo reald
-        form.fields['description'].widget = forms.TextInput(attrs={'class':'form-control mb-2', 'placeholder':'Ingrese una descripción'})
+        form.fields['description'].widget = forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Ingrese una descripción'})
         return form
+
 
 @method_decorator(staff_member_required, name='dispatch')
 class RegisterUpdate(UpdateView):
     model = Register
     fields = ['sub_category', 'description', 'status']
     template_name_suffix = '_update_form'
-  
+    
+    def get_form(self, form_class=None):
+        form = super(RegisterUpdate, self).get_form()
+        # Modificar en tiempo reald
+        form.fields['description'].widget = forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Ingrese una descripción'})
+        return form
+
     def get_success_url(self) -> str:
         return reverse_lazy('registers:update', args=[self.object.id]) + '?ok'
 
@@ -48,10 +55,8 @@ class RegisterDelete(DeleteView):
     model = Register
     success_url = reverse_lazy('registers:registers')
 
-
 def index(request):
     return HttpResponse('ok')
-
 
 def generate_qrcode(request):
     data = 'https://www.columbia.edu.py/'
