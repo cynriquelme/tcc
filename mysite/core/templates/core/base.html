@@ -38,15 +38,18 @@
             <a class="nav-link" href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Inicio</a><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'about' %}">Acerca de</a>
+            <a class="nav-link" href="{% url 'registers:registers' %}"><i class="fa fa-fw fa-qrcode"></i> Registros</a></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fa fa-fw fa-folder"></i> Reportes</a></a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Crud
+              <i class="fa fa-fw fa-plus"></i> Crud
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <a class="dropdown-item" href="{% url 'cities' %}">Ciudades</a>
-              <a class="dropdown-item" href="{% url 'registers:registers' %}">Registros</a>
+              <a class="dropdown-item" href="#">Something else here</a>
               <a class="dropdown-item" href="#">Something else here</a>
             </div>
           </li>

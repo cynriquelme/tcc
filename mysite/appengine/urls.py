@@ -25,8 +25,6 @@ from django.conf import settings
 
 urlpatterns = [
     path('', core_views.home, name="home"),
-    path('about/', core_views.about, name="about"),
-    path('polls/', include('polls.urls')),
     path('registers/', include(registers_patterns)),
     path('cities/', crud_views.list_cities, name='cities'),
     path('admin/', admin.site.urls),

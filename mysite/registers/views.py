@@ -1,5 +1,5 @@
 import django
-from .models import Category, Register
+from .models import Category, SubCategory, Register, CodeQR
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -58,6 +58,16 @@ class RegisterDelete(DeleteView):
 def index(request):
     return HttpResponse('ok')
 
+@method_decorator(staff_member_required, name='dispatch')
+class CodeQRCreate(CreateView):
+    model = CodeQR
+    fields = ['generated_code', 'registre']
+    success_url = reverse_lazy('registers:registers')
+
+    def get_object(self):
+        # recuperar el objeto que se va a editar
+        return self.request.user
+    
 def generate_qrcode(request):
     data = 'https://www.columbia.edu.py/'
     img = qrcode.make(data)
@@ -68,5 +78,7 @@ def generate_qrcode(request):
 
     response = HttpResponse(image_stream, content_type="image/png")
     return response
+    
 
     
+

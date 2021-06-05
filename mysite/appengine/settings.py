@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
-    'polls.apps.PollsConfig',
     'crud.apps.CrudConfig',
     'registers.apps.RegistersConfig',
 ]
