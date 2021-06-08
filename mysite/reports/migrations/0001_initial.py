@@ -16,35 +16,39 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Register',
+            name='Report',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('description', models.CharField(max_length=600, unique=True, verbose_name='Descripción')),
-                ('registration_date', models.DateField(auto_now_add=True, verbose_name='Fecha de Registro')),
+                ('found_date', models.DateField(verbose_name='Fecha Encontrada')),
+                ('found_time', models.TimeField(verbose_name='Hora Encontrada')),
+                ('image', models.ImageField(upload_to='media/', verbose_name='Imagen')),
                 ('status', models.BooleanField(default=True, help_text='Indica si el registro está Activo o Inactivo.', verbose_name='Activo')),
                 ('create_date', models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creación')),
                 ('update_date', models.DateTimeField(auto_now=True, verbose_name='Fecha de modificación')),
                 ('sub_category', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='crud.subcategory', verbose_name='Sub Categoría')),
+                ('type_report', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='crud.typereport', verbose_name='Tipo de Reporte')),
                 ('user', models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
             options={
-                'verbose_name': 'Registro',
-                'verbose_name_plural': 'Registros',
+                'verbose_name': 'Reporte',
+                'verbose_name_plural': 'Reportes',
                 'ordering': ['-create_date'],
             },
         ),
         migrations.CreateModel(
-            name='CodeQR',
+            name='Coordinate',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('generated_code', models.CharField(max_length=200, unique=True, verbose_name='Código QR')),
+                ('c_latitude', models.FloatField(verbose_name='Latitud')),
+                ('c_length', models.FloatField(verbose_name='Longitud')),
                 ('create_date', models.DateTimeField(auto_now_add=True, verbose_name='Fecha de creación')),
                 ('update_date', models.DateTimeField(auto_now=True, verbose_name='Fecha de modificación')),
-                ('registre', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='registers.register', verbose_name='Registro')),
+                ('report', models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, to='reports.report', verbose_name='Reporte')),
             ],
             options={
-                'verbose_name': 'Código QR',
-                'verbose_name_plural': 'Códigos QR',
+                'verbose_name': 'Coordenada',
+                'verbose_name_plural': 'Coordenadas',
                 'ordering': ['-create_date'],
             },
         ),

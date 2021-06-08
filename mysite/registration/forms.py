@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from crud.models import *
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Person, Profile
 from django.forms import fields, models, widgets
 
 class UserCreationFormWithEmail(UserCreationForm):
@@ -26,6 +26,14 @@ class ProfileForm(forms.ModelForm):
             'avatar': forms.ClearableFileInput(attrs={'class':'form-control-file mt-3'}),
             'bio': forms.Textarea(attrs={'class':'form-control mt-3','rows':3, 'placeholder':'Biografía'}),
             'link': forms.URLInput(attrs={'class':'form-control mt-3', 'placeholder':'Enlace'}),
+        }
+
+    class Meta:
+        model = Person
+        fields = ['names', 'last_names']
+        widgets = {
+            'names': forms.TextInput(attrs={'class':'form-control mt-3','placeholder':'Nombres'}),
+            'last_names': forms.TextInput(attrs={'class':'form-control mt-3','placeholder':'Apellidos'}),
         }
 
 class EmailForm(forms.ModelForm):

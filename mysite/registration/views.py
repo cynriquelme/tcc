@@ -7,7 +7,7 @@ from django.views.generic import CreateView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from django import forms
-from .models import Profile
+from .models import Person, Profile
 
 
 # Create your views here.

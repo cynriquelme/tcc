@@ -1,5 +1,5 @@
 import django
-from .models import Category, SubCategory, Register, CodeQR
+from .models import *
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView

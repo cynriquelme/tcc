@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'core',
     'crud.apps.CrudConfig',
     'registers.apps.RegistersConfig',
+    'reports.apps.ReportsConfig',
 ]
 
 MIDDLEWARE = [
