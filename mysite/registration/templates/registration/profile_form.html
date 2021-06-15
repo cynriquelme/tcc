@@ -26,6 +26,9 @@
               {{ form.link }}
               {{ form.names }}
               {{ form.last_names }}
+              {{ form.birthday }}
+              {{ form.phone }}
+              {{ form.direction }}
               <input type="email" value="{{request.user.email}}" class="form-control mt-3" readonly>
                 <p class="mt-3">Si deseas modificar tu correo haz clic <a href="{% url 'profile_email' %}">aquí</a>. <br>
                     Y si quieres cambiar tu contraseña haz clic <a href="{% url 'password_change' %}">aquí</a>

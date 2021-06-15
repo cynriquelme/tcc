@@ -30,10 +30,13 @@ class ProfileForm(forms.ModelForm):
 
     class Meta:
         model = Person
-        fields = ['names', 'last_names']
+        fields = ['names', 'last_names', 'birthday', 'phone', 'direction']
         widgets = {
             'names': forms.TextInput(attrs={'class':'form-control mt-3','placeholder':'Nombres'}),
             'last_names': forms.TextInput(attrs={'class':'form-control mt-3','placeholder':'Apellidos'}),
+            'birthday': forms.DateInput(attrs={'type':'date','class':'form-control mt-3'}),
+            'phone': forms.TextInput(attrs={'class':'form-control mt-3','placeholder':'Teléfono'}),
+            'direction': forms.TextInput(attrs={'class':'form-control mt-3','placeholder':'Dirección'}),
         }
 
 class EmailForm(forms.ModelForm):
