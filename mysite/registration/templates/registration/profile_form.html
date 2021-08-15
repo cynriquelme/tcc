@@ -22,11 +22,10 @@
             <div class="col-md-10">
               <h3>Perfil</h3>
               <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
-              {{ form.bio }}
-              {{ form.link }}
+              <input type="usuario" value="{{request.user}}" class="form-control mt-3" readonly placeholder="Usuario">
               <input type="email" value="{{request.user.email}}" class="form-control mt-3" readonly>
-                <p class="mt-3">Si deseas modificar tu correo haz clic <a href="{% url 'profile_email' %}">aquí</a>. <br>
-                    Y si quieres cambiar tu contraseña haz clic <a href="{% url 'password_change' %}">aquí</a>
+                <p class="mt-3">Si desea modificar su correo haz clic <a href="{% url 'profile_email' %}">aquí</a>. <br>
+                    Para modificar su contraseña haz clic <a href="{% url 'password_change' %}">aquí</a>.
                 </p>
               <input type="submit" class="btn btn-primary btn-block mt-3" value="Actualizar">
             </div>
