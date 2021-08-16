@@ -30,7 +30,7 @@ class RegisterCreate(CreateView):
 
     def get_form(self, form_class=None):
         form = super(RegisterCreate, self).get_form()
-        # Modificar en tiempo reald
+        # Modificar en tiempo real
         form.fields['description'].widget = forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Ingrese una descripción'})
         return form
 
