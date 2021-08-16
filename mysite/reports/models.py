@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth.models import User
+from registers.models import SubCategory
 
 
 class TypeReport(models.Model):
@@ -25,7 +26,7 @@ class Report(models.Model):
     status = models.BooleanField(verbose_name="Activo", default=True, help_text="Indica si el registro está Activo o Inactivo.")
     type_report = models.ForeignKey(TypeReport, on_delete=models.CASCADE, default=0, verbose_name="Tipo de Reporte")
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default=0, verbose_name="Sub Categoría")
-    usser = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name="Usuario", null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, verbose_name="Usuario", null=True)
     create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
 
