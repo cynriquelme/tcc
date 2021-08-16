@@ -2,35 +2,7 @@ from django.db import models
 #from ckeditor.fields import RichTextField
 from django.conf import settings
 from django.contrib.auth.models import User
-
-class Category(models.Model):
-    description = models.CharField(max_length=200, verbose_name="Descripción", unique=True)
-    create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
-
-    class Meta:
-        verbose_name = 'Categoria'
-        verbose_name_plural = 'Categorias'
-        ordering = ["-create_date"]
-
-    def __str__(self):
-        return self.description
-
-    
-class SubCategory(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=0, verbose_name="Categoría")
-    description = models.CharField(max_length=200, verbose_name="Descripción", unique=True)
-    create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
-
-    class Meta:
-        verbose_name = 'Sub Categoria'
-        verbose_name_plural = 'Sub Categorias'
-        ordering = ["-create_date"]
-
-    def __str__(self):
-        return self.description
-
+from crud.models import SubCategory
 
 class Register(models.Model):
     description = models.CharField(max_length=600, verbose_name="Descripción", unique=True)
