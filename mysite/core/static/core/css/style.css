@@ -11,3 +11,26 @@ select{
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+body{
+    background-color: #DFDBE5;
+    background-image: url("core/img/lupa.jpg");
+}
+
+header{
+    width: 100%;
+    padding: 350px;
+    margin: 0px 0px 20px;
+}
+
+footer{
+    background-color: #283747;
+    color: white;
+    text-align: center;
+}
+
+section .links {
+    color: #616161;
+    font-size: 30px;
+    padding: 10px;
+}
