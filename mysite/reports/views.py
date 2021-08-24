@@ -1,4 +1,5 @@
 import django
+from django.http import request
 from .models import Report, Coordinate
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -9,6 +10,7 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
 from django import forms
 from crud.models import TypeReport, SubCategory
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -21,7 +23,7 @@ class ReportDetailView(DetailView):
 @method_decorator(staff_member_required, name='dispatch')
 class ReportCreate(CreateView):
     model = Report
-    fields = ['type_report', 'sub_category', 'image', 'description', 'found_date', 'found_time',  'status',]
+    fields = ['type_report', 'sub_category', 'description', 'found_date', 'found_time',  'status', 'user', 'image']
     success_url = reverse_lazy('reports:reports')
 
     def get_object(self):
