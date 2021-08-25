@@ -11,7 +11,7 @@ from django.urls import reverse, reverse_lazy
 from django import forms
 from crud.models import TypeReport, SubCategory
 from django.contrib.auth.models import User
-
+from .forms import ReportForm
 
 # Create your views here.
 class ReportListView(ListView):
@@ -20,18 +20,16 @@ class ReportListView(ListView):
 class ReportDetailView(DetailView):
     model = Report
 
-@method_decorator(staff_member_required, name='dispatch')
-class ReportCreate(CreateView):
-    model = Report
-    fields = ['type_report', 'sub_category', 'description', 'found_date', 'found_time',  'status', 'user', 'image']
-    success_url = reverse_lazy('reports:reports')
-
-    def get_object(self):
-        # recuperar el objeto que se va a editar
-        return self.request.user
-
-    def get_form(self, form_class=None):
-        form = super(ReportCreate, self).get_form()
-        # Modificar en tiempo real
-        form.fields['description'].widget = forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Ingrese una descripción'})
-        return form
+def report_new(request):
+    if request.method == "POST":
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            print("entro")
+            return redirect('reports:reports')
+    else:
+        form = ReportForm()
+        print("entro 2")
+    return render(request, 'reports/report_form.html', {'form': form})

@@ -18,7 +18,7 @@ class RegisterListView(ListView):
 class RegisterDetailView(DetailView):
     model = Register
 
-@method_decorator(staff_member_required, name='dispatch')
+
 class RegisterCreate(CreateView):
     model = Register
     fields = ['sub_category', 'description', 'status']
@@ -35,7 +35,7 @@ class RegisterCreate(CreateView):
         return form
 
 
-@method_decorator(staff_member_required, name='dispatch')
+
 class RegisterUpdate(UpdateView):
     model = Register
     fields = ['sub_category', 'description', 'status']
@@ -50,7 +50,7 @@ class RegisterUpdate(UpdateView):
     def get_success_url(self) -> str:
         return reverse_lazy('registers:update', args=[self.object.id]) + '?ok'
 
-@method_decorator(staff_member_required, name='dispatch')
+
 class RegisterDelete(DeleteView):
     model = Register
     success_url = reverse_lazy('registers:registers')

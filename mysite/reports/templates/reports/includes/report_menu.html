@@ -2,7 +2,6 @@
 <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
 <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 
-{% if request.user.is_staff %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <span class="navbar-brand" href="#"><i>Administrar</i></span>
@@ -15,10 +14,9 @@
           <a class="nav-link" href="{% url 'reports:create' %}"><i>Crear Reporte</i></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'registers:registers' %}"><i>Listar Reportes</i></a>
+          <a class="nav-link" href="{% url 'reports:reports' %}"><i>Listar Reportes</i></a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-{% endif %}

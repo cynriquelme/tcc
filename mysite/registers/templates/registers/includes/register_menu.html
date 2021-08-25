@@ -2,7 +2,6 @@
 <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
 <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
 
-{% if request.user.is_staff %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
     <span class="navbar-brand" href="#"><i>Administrar</i></span>
@@ -21,4 +20,3 @@
     </div>
   </div>
 </nav>
-{% endif %}
