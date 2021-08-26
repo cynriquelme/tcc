@@ -20,6 +20,8 @@ class ReportListView(ListView):
 class ReportDetailView(DetailView):
     model = Report
 
+
+
 def report_new(request):
     if request.method == "POST":
         form = ReportForm(request.POST)

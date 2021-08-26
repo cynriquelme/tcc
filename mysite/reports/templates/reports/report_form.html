@@ -15,16 +15,6 @@
             <form action="" method="post">{% csrf_token %}
                 <table>
                     {{ form.as_table }}
-                    {% block scripts_local %}  
-                      <script>  
-                        $(function () {  
-                          $("#id_found_date").datetimepicker({  
-                              format: 'd/m/Y',  
-                              timepicker:false  
-                          });  
-                        });  
-                      </script>  
-                    {% endblock scripts_local %}  
                 </table>
                 <br>
                 <div class="text-center">

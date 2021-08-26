@@ -1,18 +1,23 @@
 from django import forms
+from django.forms.forms import Form
 from .models import Report
 from django.contrib.admin import widgets
 
+class DateInput (forms.DateInput):
+    input_type = 'date'
+
+class TimeInput (forms.TimeInput):
+    input_type = 'time'
+    
 class ReportForm(forms.ModelForm):
     class Meta:
         model = Report
-        fields = ['description', 'found_date', 'found_time', 'status', 'type_report', 'sub_category']
+        fields = ['type_report', 'sub_category','description', 'found_date', 'found_time', 'status' ]
         widgets = {
             'description': forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Ingrese una descripción'}),
-            #'bio': forms.Textarea(attrs={'class':'form-control mt-3','rows':3, 'placeholder':'Biografía'}),
-            #'link': forms.URLInput(attrs={'class':'form-control mt-3', 'placeholder':'Enlace'}),
+            'found_date': DateInput(attrs = {'class':'form-control mb-2 mt-3 '}),
+            'found_time': TimeInput(attrs = {'class':'form-control mb-2 mt-3'}),
+            'type_report': forms.Select(attrs={'class':'form-control mb-2 mt-3'}),
+            'sub_category': forms.Select(attrs={'class':'form-control mb-2 mt-3'}),
+            #'image': forms.ClearableFileInput(attrs={'class':'form-control-file mb-2 mt-3'}),
         }
-
-        def __init__(self, *args, **kwargs):
-            super(ReportForm, self).__init__(*args, **kwargs)
-            self.fields['found_date'].widget.attrs['readonly'] = True  
-            self.fields['found_time'].widget.attrs['readonly'] = True  
