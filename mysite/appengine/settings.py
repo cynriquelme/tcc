@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import django_google_maps
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -122,6 +123,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = False
+
 
 
 # Static files (CSS, JavaScript, Images)

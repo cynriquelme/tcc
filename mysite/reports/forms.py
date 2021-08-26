@@ -1,6 +1,7 @@
 from django import forms
+from django.forms import models
 from django.forms.forms import Form
-from .models import Report
+from .models import Coordinate, Report
 from django.contrib.admin import widgets
 
 class DateInput (forms.DateInput):
@@ -19,5 +20,13 @@ class ReportForm(forms.ModelForm):
             'found_time': TimeInput(attrs = {'class':'form-control mb-2 mt-3'}),
             'type_report': forms.Select(attrs={'class':'form-control mb-2 mt-3'}),
             'sub_category': forms.Select(attrs={'class':'form-control mb-2 mt-3'}),
+            #'image': forms.ClearableFileInput(attrs={'class':'form-control-file mb-2 mt-3'}),
+        }
+
+class CoordinateForm(forms.ModelForm):
+    class Meta:
+        model = Coordinate
+        fields = ['c_latitude', 'c_length']
+        widgets = {
             #'image': forms.ClearableFileInput(attrs={'class':'form-control-file mb-2 mt-3'}),
         }

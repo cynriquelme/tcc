@@ -11,3 +11,15 @@ select{
     border-radius: .25rem;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
+
+.capas{
+    border: 1px solid #000;
+    display: inline-block;
+    width: 400px;
+    vertical-align: top;
+    height: 500px;
+    text-align: center;
+    margin-top: 3px;
+    margin-bottom: 2px;
+    padding: 5px;
+}

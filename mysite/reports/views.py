@@ -11,7 +11,8 @@ from django.urls import reverse, reverse_lazy
 from django import forms
 from crud.models import TypeReport, SubCategory
 from django.contrib.auth.models import User
-from .forms import ReportForm
+from .forms import ReportForm, CoordinateForm
+from django.template import RequestContext
 
 # Create your views here.
 class ReportListView(ListView):
@@ -19,8 +20,6 @@ class ReportListView(ListView):
 
 class ReportDetailView(DetailView):
     model = Report
-
-
 
 def report_new(request):
     if request.method == "POST":

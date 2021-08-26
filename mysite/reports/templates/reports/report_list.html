@@ -11,12 +11,14 @@
   <div class="container mb-4">
     {% for report in report_list|dictsort:"id" %}
       <div>
-          <h2>{{ report.description}}</h2>
+        {% if user.id == report.user.id %}
+          <h2>{{report.description}}</h2>
           <div>
             <p>{{report.sub_category|striptags|safe|truncatechars:"200"}}</p>
               <a href="#">Editar</a>
               <a href="#">Borrar</a>
           </div>
+        {% endif %}
       </div>
     {% endfor %}
   </div>
