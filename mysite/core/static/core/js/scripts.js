@@ -36,5 +36,22 @@ $(function(){
             draggable: true,
             title: 'Arrastrame'
         });
+
+        google.maps.event.addListener(marker, 'position_changed', function(){
+            getMarkerCoords(marker);
+        });
     }
+
+    function getMarkerCoords(marker)
+    {
+        var markerCoords = marker.getPosition();
+        $('#id_c_latitude').val(markerCoords.lat());
+        $('#id_c_length').val(markerCoords.lng());
+    }
+
+    $('#form_coords').submit(function(e){
+        e.preventDefault();
+        $.post('coordenate/save'),$(this).serialize(), function(data){
+        }
+    });
 });

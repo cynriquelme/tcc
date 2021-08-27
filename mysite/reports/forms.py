@@ -26,7 +26,7 @@ class ReportForm(forms.ModelForm):
 class CoordinateForm(forms.ModelForm):
     class Meta:
         model = Coordinate
-        fields = ['c_latitude', 'c_length']
+        fields = ['c_latitude', 'c_length', 'report']
         widgets = {
             #'image': forms.ClearableFileInput(attrs={'class':'form-control-file mb-2 mt-3'}),
         }
