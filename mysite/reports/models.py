@@ -20,6 +20,8 @@ class Report(models.Model):
     status = models.BooleanField(verbose_name="Activo", default=True, help_text="Indica si el registro está Activo o Inactivo.")
     type_report = models.ForeignKey(TypeReport, on_delete=models.CASCADE, default=0, verbose_name="Tipo de Reporte")
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default=0, verbose_name="Sub Categoría")
+    coord_latitude = models.CharField(max_length=50)
+    coord_length = models.CharField(max_length=50)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Usuario")
     create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
@@ -31,18 +33,3 @@ class Report(models.Model):
 
     def __str__(self):
         return self.description
-
-
-class Coordinate(models.Model):
-    c_latitude = models.CharField(max_length=50)
-    c_length = models.CharField(max_length=50)
-    report = models.ForeignKey(Report, on_delete=models.CASCADE, default=0, verbose_name="Reporte")
-    create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
-    class Meta:
-        verbose_name = 'Coordenada'
-        verbose_name_plural = 'Coordenadas'
-        ordering = ["-create_date"]
-
-    def __float__(self):
-        return self.c_latitude

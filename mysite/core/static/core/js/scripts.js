@@ -45,8 +45,8 @@ $(function(){
     function getMarkerCoords(marker)
     {
         var markerCoords = marker.getPosition();
-        $('#id_c_latitude').val(markerCoords.lat());
-        $('#id_c_length').val(markerCoords.lng());
+        $('#id_coord_latitude').val(markerCoords.lat());
+        $('#id_coord_length').val(markerCoords.lng());
     }
 
     $('#form_coords').submit(function(e){

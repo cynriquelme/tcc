@@ -1,6 +1,6 @@
 import django
 from django.http import request
-from .models import Report, Coordinate
+from .models import Report
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -11,8 +11,9 @@ from django.urls import reverse, reverse_lazy
 from django import forms
 from crud.models import TypeReport, SubCategory
 from django.contrib.auth.models import User
-from .forms import ReportForm, CoordinateForm
+from .forms import ReportForm
 from django.template import RequestContext
+
 
 # Create your views here.
 class ReportListView(ListView):
