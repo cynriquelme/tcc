@@ -3,7 +3,7 @@ from django.http import request
 from .models import Report
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.edit import UpdateView, DeleteView
 from django.shortcuts import redirect, render, HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
@@ -35,3 +35,22 @@ def report_new(request):
         form = ReportForm()
         print("entro 2")
     return render(request, 'reports/report_form.html', {'form': form})
+
+class ReportUpdate(UpdateView):
+    model = Report
+    fields = ['type_report', 'sub_category','description', 'found_date', 'found_time', 'status' , 'coord_latitude', 'coord_length']
+    template_name_suffix = '_update_form'
+    
+    def get_form(self, form_class=None):
+        form = super(ReportUpdate, self).get_form()
+        # Modificar en tiempo real
+        form.fields['description'].widget = forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Ingrese una descripción'})
+        return form
+
+    def get_success_url(self) -> str:
+        return reverse_lazy('reports:update', args=[self.object.id]) + '?ok'
+
+
+class ReportDelete(DeleteView):
+    model = Report
+    success_url = reverse_lazy('reports:reports')
