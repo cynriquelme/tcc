@@ -8,6 +8,7 @@ from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from django import forms
 from .models import Profile
+from django.shortcuts import redirect, render, HttpResponse
 
 
 # Create your views here.
@@ -54,3 +55,6 @@ class EmailUpdate(UpdateView):
         # Modificar en tiempo real
         form.fields['email'].widget = forms.EmailInput(attrs={'class':'form-control mb-2', 'placeholder':'Correo'})
         return form
+
+def terms_v(request):
+    return render(request,'registration/terms.html')

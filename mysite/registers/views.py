@@ -10,6 +10,7 @@ from django.urls import reverse, reverse_lazy
 from django import forms
 from six import BytesIO
 import qrcode
+from .forms import RegisterForm
 
 # Create your views here.
 class RegisterListView(ListView):
@@ -19,21 +20,19 @@ class RegisterDetailView(DetailView):
     model = Register
 
 
-class RegisterCreate(CreateView):
-    model = Register
-    fields = ['sub_category', 'description', 'status']
-    success_url = reverse_lazy('registers:registers')
-
-    def get_object(self):
-        # recuperar el objeto que se va a editar
-        return self.request.user
-
-    def get_form(self, form_class=None):
-        form = super(RegisterCreate, self).get_form()
-        # Modificar en tiempo real
-        form.fields['description'].widget = forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Ingrese una descripción'})
-        return form
-
+def register_new(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            print("entro register")
+            return redirect('registers:registers')
+    else:
+        form = RegisterForm()
+        print("entro 2 register")
+    return render(request, 'registers/register_form.html', {'form': form})
 
 
 class RegisterUpdate(UpdateView):
@@ -61,15 +60,17 @@ def index(request):
 @method_decorator(staff_member_required, name='dispatch')
 class CodeQRCreate(CreateView):
     model = CodeQR
-    fields = ['generated_code', 'registre']
+    fields = ['generated_code', 'register']
     success_url = reverse_lazy('registers:registers')
 
     def get_object(self):
         # recuperar el objeto que se va a editar
         return self.request.user
-    
+
 def generate_qrcode(request):
-    data = 'https://www.columbia.edu.py/'
+    user = request.user.id
+    print(user)
+    data = "http://127.0.0.1:8000/registers/update/" + str(user) + "/" 
     img = qrcode.make(data)
 
     buf = BytesIO()		# BytesIO se da cuenta de leer y escribir bytes en la memoria

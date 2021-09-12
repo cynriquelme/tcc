@@ -9,7 +9,7 @@ class Register(models.Model):
     registration_date = models.DateField(auto_now_add=True, verbose_name="Fecha de Registro")
     status = models.BooleanField(verbose_name="Activo", default=True, help_text="Indica si el registro está Activo o Inactivo.")
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default=0, verbose_name="Sub Categoría")
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Usuario")
     create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
 
