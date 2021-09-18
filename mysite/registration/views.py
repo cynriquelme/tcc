@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.utils import decorators
 from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
@@ -9,6 +10,7 @@ from django.urls import reverse_lazy
 from django import forms
 from .models import Profile
 from django.shortcuts import redirect, render, HttpResponse
+from django.http import Http404
 
 
 # Create your views here.
@@ -58,3 +60,15 @@ class EmailUpdate(UpdateView):
 
 def terms_v(request):
     return render(request,'registration/terms.html')
+
+def profile_owner_v(request,pk):
+    try:
+        profile_id=Profile.objects.get(pk=pk)
+    except Profile.DoesNotExist:
+        return HttpResponse('El Propietario Ingresado no existe. ')
+    
+    return render(
+        request,
+        'registration/profile_owner.html',
+        context={'profile':profile_id,}
+    )

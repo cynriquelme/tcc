@@ -70,7 +70,7 @@ class CodeQRCreate(CreateView):
 def generate_qrcode(request):
     user = request.user.id
     print(user)
-    data = "http://127.0.0.1:8000/registers/update/" + str(user) + "/" 
+    data = "http://127.0.0.1:8000/accounts/profile/owner/" + str(user) + "/" 
     img = qrcode.make(data)
 
     buf = BytesIO()		# BytesIO se da cuenta de leer y escribir bytes en la memoria

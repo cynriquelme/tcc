@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Perfil{% endblock %}
+{% block content %}
+<style>.errorlist{color:red;} label{display:none}</style>
+<main role="main">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto mb-5">
+        <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+          <div class="row">
+            <!-- Formulario -->
+            {% if user.is_authenticated %}
+              <div class="col-md-10">
+                <h2 align="center">Información del Propietario</h2>
+                {% for p in User %}
+                  <td>
+                    {{ p.name }}
+                  </td>
+                {% endfor %}
+                  {% if profile.avatar %}
+                      <center><img src="{{profile.avatar.url}}" class="img-fluid"></center>
+                  {% else %}
+                      <center><img src="{% static 'registration/img/no-avatar.png' %}" class="img-fluid"></center>
+                  {% endif %}
+                <input type="usuario" value="{{profile.user}}" class="form-control mt-3" readonly placeholder="Usuario">
+                <input type="usuario" value="{{profile.user.first_name}}" class="form-control mt-3" readonly placeholder="Nombre">
+                <input type="usuario" value="{{profile.user.last_name}}" class="form-control mt-3" readonly placeholder="Nombre">
+                <input type="email" value="{{profile.user.email}}" class="form-control mt-3" readonly placeholder="Correo">
+              </div>
+            {% else %}
+                <h2>Debe Ingresar para poder visualizar los datos del Propietario --><a href="{% url 'login'%}?next={{request.path}}">Iniciar Sesión</a></h2>
+            {% endif %} 
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

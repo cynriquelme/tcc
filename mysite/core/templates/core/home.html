@@ -5,10 +5,38 @@
 {% block background %}{% load static %}{% static 'core/img/lupa.jpg' %}{% endblock %}
 
 {% block headers %}
-    <h1>Atopa</h1>
+
 {% endblock %}
 
 {% block content %}
-    {% comment %} <h1>Portada</h1>
-    <h2>Esto es la portada</h2> {% endcomment %}
+    <div class="container">
+        <h1 class="title" style="text-align: center; margin-top: 5px;">Últimos Reportes</h1>
+        <div class="row">
+            <div class="card" style="width: 18rem; margin: 20px; margin-bottom: 10px;">
+                <img class="img-fluid" src="{% static 'core/img/avatar.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary btn-block">Ver Reporte</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; margin: 20px; margin-bottom: 10px;">
+                <img class="img-fluid" src="{% static 'core/img/avatar.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary btn-block">Ver Reporte</a>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; margin: 20px; margin-bottom: 10px;">
+                <img class="img-fluid" src="{% static 'core/img/avatar.jpg' %}" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary btn-block">Ver Reporte</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}

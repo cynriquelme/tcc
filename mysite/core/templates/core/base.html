@@ -25,10 +25,8 @@
     </head>
 
   <body >
-    
-
     <!-- Navegación -->
-    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
       <a class="navbar-brand" href="{% url 'home' %}"><h1>Atopa</h1></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -87,18 +85,16 @@
         {% block content %}{% endblock %}
     </div>
 
-    {% if request.path != "/" %} <hr> {% endif %}
 
     <!-- Pié de página -->
     <footer>
       <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="col-lg-10 col-md-20 mx-auto">
             <ul class="list-inline text-center">
               <li class="list-inline-item">
-                <a href="#">
+                <a href="#" >
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-circle fa-stack-2x" style="color:rgb(10,35,68);"></i>
                     <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
@@ -106,7 +102,7 @@
               <li class="list-inline-item">
                 <a href="#">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-circle fa-stack-2x" style="color:rgb(10,35,68);"></i>
                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
@@ -114,15 +110,14 @@
               <li class="list-inline-item">
                 <a href="#">
                   <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-circle fa-stack-2x" style="color:rgb(10,35,68);"></i>
                     <i class="fa fa-youtube fa-stack-1x fa-inverse"></i>
                   </span>
                 </a>
               </li>
             </ul>
-            <p class="copyright text-muted">Copyright &copy; 2021 </p>
+            <p>Copyright &copy; 2021 </p>
           </div>
-        </div>
       </div>
     </footer>
 
