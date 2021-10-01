@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
-{% block title %}Perfil{% endblock %}
+{% block title %}Propietario{% endblock %}
 {% block content %}
 <style>.errorlist{color:red;} label{display:none}</style>
 <main role="main">
@@ -24,8 +24,6 @@
                       <center><img src="{% static 'registration/img/no-avatar.png' %}" class="img-fluid"></center>
                   {% endif %}
                 <input type="usuario" value="{{profile.user}}" class="form-control mt-3" readonly placeholder="Usuario">
-                <input type="usuario" value="{{profile.user.first_name}}" class="form-control mt-3" readonly placeholder="Nombre">
-                <input type="usuario" value="{{profile.user.last_name}}" class="form-control mt-3" readonly placeholder="Nombre">
                 <input type="email" value="{{profile.user.email}}" class="form-control mt-3" readonly placeholder="Correo">
               </div>
             {% else %}
