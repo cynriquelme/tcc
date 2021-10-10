@@ -13,3 +13,6 @@ class RegisterForm(forms.ModelForm):
             'description': forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Ingrese una descripción'}),
             'sub_category': forms.Select(attrs={'class':'form-control mb-2 mt-3'}),
         }
+
+class UploadFileForm(forms.Form):
+    file = forms.FileField(required=False)

@@ -9,4 +9,5 @@ registers_patterns = ([
     path('update/<int:pk>/', RegisterUpdate.as_view(), name= 'update'),
     path('delete/<int:pk>/', RegisterDelete.as_view(), name= 'delete'),
     path('qrcode/', views.generate_qrcode, name='qrcode'),
+    path('scanner_qr/', views.scanner_qr, name='scanner_qr'),
 ], 'registers' )

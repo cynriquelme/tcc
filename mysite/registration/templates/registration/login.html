@@ -14,7 +14,7 @@
           <form action="" method="post">{% csrf_token %}
             <h3 class="mb-4">Iniciar sesión</h3>
             {% if form.non_field_errors %}
-              <p style="color:red">Usuario o contraseña incorrectos, prueba de nuevo.</p>
+              <p style="color:red">Usuario o contraseña incorrectos, intente de nuevo.</p>
             {% endif %}
             <p>
               <input type="text" name="username" autofocus maxlength="254" required

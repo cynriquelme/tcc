@@ -1,4 +1,6 @@
+from os import name
 import django
+from django.contrib.admin.views import decorators
 from .models import Register, CodeQR
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -11,6 +13,10 @@ from django import forms
 from six import BytesIO
 import qrcode
 from .forms import RegisterForm
+import cv2
+from pyzbar.pyzbar import decode
+from PIL import Image
+from flask import Flask, render_template, request
 
 # Create your views here.
 class RegisterListView(ListView):
@@ -80,6 +86,10 @@ def generate_qrcode(request):
     response = HttpResponse(image_stream, content_type="image/png")
     return response
     
-
-    
+def scanner_qr(request):
+    if request.method == "POST" and request.POST:
+        archivo = request.POST.get("archivo")
+        d = decode(Image.open("registers/static/registers/img/qrprueba.png"))
+        print(d[0].data.decode("ascii"))
+    return render(request,'registers/scanner_qr_form.html')
 
