@@ -11,32 +11,23 @@
 {% block content %}
     <div class="container">
         <h1 class="title" style="text-align: center; margin-top: 5px;">Últimos Reportes</h1>
-        <div class="row">
+        <div class="row"> 
+           {% for report in reports %}
             <div class="card" style="width: 18rem; margin: 20px; margin-bottom: 10px;">
-                <img class="img-fluid" src="{% static 'core/img/avatar.jpg' %}" alt="Card image cap">
+                {% if report.image %}
+                    <img class="img-fluid" src="{{report.image}}" alt="Card image cap">
+                {% else %}
+                    <img class="img-fluid" src="{% static 'core/img/img-reporte.png' %}" alt="Card image cap">
+                {% endif %}
                 <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h5 class="card-title">Reporte - {{report.type_report}}</h5>
+                  <p class="card-text">{{report.description}}</p>
+                  <h6><b>Autor:</b> {{report.user.username}}</h6>
                   <a href="#" class="btn btn-primary btn-block">Ver Reporte</a>
                 </div>
             </div>
-            <div class="card" style="width: 18rem; margin: 20px; margin-bottom: 10px;">
-                <img class="img-fluid" src="{% static 'core/img/avatar.jpg' %}" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary btn-block">Ver Reporte</a>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem; margin: 20px; margin-bottom: 10px;">
-                <img class="img-fluid" src="{% static 'core/img/avatar.jpg' %}" alt="Card image cap">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary btn-block">Ver Reporte</a>
-                </div>
-            </div>
-        </div>
+          {% endfor %}
     </div>
+</div>
 
 {% endblock %}

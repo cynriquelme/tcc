@@ -53,3 +53,9 @@ nav{
 nav.li.nav-item{
     color: black;
 }
+
+h5.card-title{
+    background-color: #5093db;
+    color: white;
+    text-align: center;
+}
