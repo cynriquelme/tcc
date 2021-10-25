@@ -64,3 +64,83 @@ p.view-text{
     font-size: 21px;
     color: black;
 }
+
+.filter-section{
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    z-index: 2000;
+    align-content: start;
+    overflow: overlay;
+    transition: right 0.3s;
+}
+
+.filter-title{
+    margin-left: 1rem;
+    color: gray;
+    padding: 10px;
+}
+
+.fa-angle-down{
+    width: 1.28571429em;
+    text-align: center;
+    background-color: rgb(53, 51, 51);
+}
+
+ul.filter-option{
+    margin-left: 1rem;
+    color: gray;
+    cursor: pointer;
+    padding: 10px;
+}
+
+ul.filter-option li {
+    list-style: none;
+}
+
+ul.filter-option li.float {
+    float: right;
+    margin-top: 18px;
+    margin-inline: 30px;
+}
+
+ul.filter-option li a {
+    display: block;
+    padding: 10px;
+    color: rgb(185, 184, 184);
+    text-decoration: none;
+}
+
+ul.filter-option li ul {
+    max-height: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    transition: .3s all ease-in;
+}
+
+ul.filter-option li li a {
+    padding: 15px 25px 15px 25px;
+    color: rgb(56, 51, 51);
+    font-size: 15px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+ul.filter-option li li:last-child a {
+    border-bottom: 0;
+}
+
+
+ul.filter-option li:hover ul {
+    max-height: 300px;
+    transition: .3s all ease-in;
+    border: 1px solid #ccc;
+}
+
