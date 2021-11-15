@@ -9,16 +9,69 @@
 {% include 'registers/includes/register_menu.html' %}
 <main role="main">
   <div class="container mb-4">
-    {% for register in register_list|dictsort:"id" %}
-      <div>
+      {% comment %} <div>
           <h2>{{ register.description}}</h2>
           <div>   
             <p>{{register.sub_category|striptags|safe|truncatechars:"200"}}</p>
               <a href="{% url 'registers:update' register.id %}">Editar</a>
               <a href="{% url 'registers:delete' register.id %}">Borrar</a>
           </div>
+      </div> {% endcomment %}
+      <button type="button" class="btn btn-primary"><a style="color:white;" href="{% url 'registers:create' %}">Crear Registro</a></button>
+      <table class="table mt-3">
+      <thead>
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for register in register_list|dictsort:"id" %}
+        <tr>
+          <th scope="row">{{ register.id}}</th>
+          <td><h2>{{ register.description}}</h2></td>
+          <td><a href="{% url 'registers:update' register.id %}">Editar</a></td>
+          <td><a href="{% url 'registers:delete' register.id %}">Eliminar</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% if is_paginated %}
+      <div class="mt-3">
+        <ul class="pagination justify-content-center">
+
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a href="?page={{ page_obj.previous_page_number }}" class="page-link">Anterior</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <a href="#" class="page-link">Anterior</a>
+            </li>
+          {% endif %}
+
+          {% for i in paginator.page_range %}
+              <li class="page-item {% if page_obj.number == i %} active {% endif %}">
+                <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+              </li>
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a href="?page={{ page_obj.next_page_number }}" class="page-link">Siguiente</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <a href="#" class="page-link">Siguiente</a>
+            </li>
+          {% endif %}
+        </ul>
       </div>
-    {% endfor %}
+    {% endif %}
+
   </div>
 </main>
 {% endblock %}
