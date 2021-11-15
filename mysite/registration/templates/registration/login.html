@@ -20,7 +20,6 @@
               <input type="text" name="username" autofocus maxlength="254" required
                 id="id_username" class="form-control" placeholder="Nombre de usuario"/>
             </p>
-            <p>¿Ha olvidado su contraseña? Puede recuperarlo <a href="{% url 'password_reset' %}">aquí</a></p>
             <div class="input-group">
                  <input type="password" name="password" required id="id_password" class="form-control" placeholder="Contraseña"/>
               <div class="input-group-append">
@@ -30,6 +29,7 @@
               </div>
             </div>
             </p>
+            <p>¿Ha olvidado su contraseña? Puede recuperarlo <a href="{% url 'password_reset' %}">aquí</a></p>
             <p><input type="submit" class="btn btn-primary btn-block" value="Acceder">
             </p>
             <p>¿Todavía no tienes una cuenta? <a href="{% url 'signup' %}"> Registrate</a></p>
