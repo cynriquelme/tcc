@@ -20,7 +20,15 @@ from flask import Flask, render_template, request
 
 # Create your views here.
 class RegisterListView(ListView):
-    model = Register
+    template_name= 'registers/register_list.html'
+    queryset = Register.objects.all().order_by('-id')
+    paginate_by = 5
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['message'] = 'Lista de Registros'
+
+        return context
 
 class RegisterDetailView(DetailView):
     model = Register
