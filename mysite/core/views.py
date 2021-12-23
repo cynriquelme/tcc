@@ -3,10 +3,16 @@ from django.views.generic.list import ListView
 from django.template import loader
 from reports.models import Report
 from crud.models import Category, SubCategory
+from django.core.paginator import Paginator
+from django.shortcuts import render
 
 def home(request):
     reports = Report.objects.all()
     categories = Category.objects.all()
     sub_categories = SubCategory.objects.all()
     template = "core/home.html"
-    return render(request, template,{"reports":reports, "categories":categories, "sub_categories":sub_categories, "request":request})
+    paginator = Paginator(reports, 10) # Show 25 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, template,{"reports":reports, "categories":categories, "sub_categories":sub_categories, "request":request, 'page_obj': page_obj})

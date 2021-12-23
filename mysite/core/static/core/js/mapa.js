@@ -12,7 +12,7 @@ $(function(){
         var lng = position.coords.longitude;
         $('#id_coord_latitude').val(lat);
         $('#id_coord_length').val(lng);
-
+        
         initialize(lat, lng);
     }
 
@@ -29,7 +29,7 @@ $(function(){
             zoom: 15,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
-
+        
         map = new google.maps.Map($('#mapa').get(0), mapSettings);
 
         var marker = new google.maps.Marker({

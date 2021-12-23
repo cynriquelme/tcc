@@ -11,7 +11,7 @@ from django.urls import reverse, reverse_lazy
 from django import forms
 from crud.models import TypeReport, SubCategory
 from django.contrib.auth.models import User
-from .forms import ReportForm
+from .forms import ReportForm, ReportUpdate
 from django.template import RequestContext
 
 
@@ -37,7 +37,6 @@ def report_new(request):
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-            message = "Image uploaded succesfully!"
             return redirect('reports:reports')
     else:
         form = ReportForm()
@@ -46,14 +45,8 @@ def report_new(request):
 
 class ReportUpdate(UpdateView):
     model = Report
-    fields = ['type_report', 'sub_category','description', 'found_date', 'found_time', 'status' , 'coord_latitude', 'coord_length']
+    form_class = ReportUpdate
     template_name_suffix = '_update_form'
-    
-    def get_form(self, form_class=None):
-        form = super(ReportUpdate, self).get_form()
-        # Modificar en tiempo real
-        form.fields['description'].widget = forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Ingrese una descripción'})
-        return form
 
     def get_success_url(self) -> str:
         return reverse_lazy('reports:update', args=[self.object.id]) + '?ok'

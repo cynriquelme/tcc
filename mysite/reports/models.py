@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from crud.models import TypeReport, SubCategory
 from django.db import models
 
-
 class Report(models.Model):
     day  = timezone.now()
     hour = timezone.now()

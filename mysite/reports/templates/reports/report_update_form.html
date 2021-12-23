@@ -20,14 +20,15 @@
             </p>
           {% endif %}
             
-          <form action="" method="post">{% csrf_token %}
+          <form method="post" enctype="multipart/form-data">{% csrf_token %}
             <table>
                 {{ form.as_table }}
+
             </table>
-             <div id="mapa" class="capas">
-                     
-              </div>
-              <br>
+            <div id="mapa" class="capas">
+                 
+            </div>
+            <br>
             <input type="submit" class="btn btn-primary btn-block" value="Actualizar" />
           </form>
         </div>
