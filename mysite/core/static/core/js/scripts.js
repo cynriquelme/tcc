@@ -10,6 +10,8 @@ $(function(){
     {
         var lat = position.coords.latitude;
         var lng = position.coords.longitude;
+        $('#id_coord_latitude').val(lat);
+        $('#id_coord_length').val(lng);
 
         initialize(lat, lng);
     }

@@ -29,7 +29,9 @@ class Report(models.Model):
     class Meta:
         verbose_name = 'Reporte'
         verbose_name_plural = 'Reportes'
-        ordering = ["-create_date"]
+        ordering = ["-found_date"]
 
     def __str__(self):
         return self.description
+
+    

@@ -18,8 +18,8 @@ from django.template import RequestContext
 # Create your views here.
 class ReportListView(ListView):
     template_name = 'reports/report_list.html­'
-    queryset = Report.objects.all().order_by('-id')
-    paginate_by = 3
+    queryset = Report.objects.all().order_by('-found_date')
+    paginate_by = 5
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -32,12 +32,12 @@ class ReportDetailView(DetailView):
 
 def report_new(request):
     if request.method == "POST":
-        form = ReportForm(request.POST)
+        form = ReportForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-            print("entro")
+            message = "Image uploaded succesfully!"
             return redirect('reports:reports')
     else:
         form = ReportForm()

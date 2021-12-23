@@ -3,18 +3,22 @@
 {% block title %}Crear Reporte{% endblock %}
 
 {% block headers %}
-  <h1>Reportes</h1>
+  <h1 style="text-align: center;">Reportes</h1>
 {% endblock %}
 {% block content %}
-{% include 'reports/includes/report_menu.html'%}
+{% comment %} {% include 'reports/includes/report_menu.html'%} {% endcomment %}
+<div class="col-11 text-right">
+  <a href="{% url 'reports:reports' %}"><button type="button" class="btn btn-primary" ><i class="fa fa-fw fa-angle-double-left "></i> Regresar</button></a>
+</div>
 <main role="main">
   <div class="container">
     <div class="row mt-3 mb-3">
       <div class="col-md-9 mx-auto">
         <div>
-            <form action="" method="post">{% csrf_token %}
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
                 <table>
                     {{ form.as_table }}
+
                 </table>
                 <div id="mapa" class="capas">
                      
@@ -30,3 +34,9 @@
   </div>
 </main>
 {% endblock %}
+
+<script>
+  function openImage(URL){ 
+   window.open("{% url 'registers:qrcode' %}","ventana1","width=800,height=600,scrollbars=NO") 
+  }
+</script>

@@ -6,7 +6,10 @@
     <h1 style="text-align: center;">Registros</h1>
 {% endblock %}
 {% block content %}
-{% include 'registers/includes/register_menu.html'%}
+{% comment %} {% include 'registers/includes/register_menu.html'%} {% endcomment %}
+<div class="col-11 text-right">
+  <a href="{% url 'registers:registers' %}"><button type="button" class="btn btn-primary" ><i class="fa fa-fw fa-angle-double-left "></i> Regresar</button></a>
+</div>
 <main role="main">
   <div class="container">
     <div class="row mt-3">

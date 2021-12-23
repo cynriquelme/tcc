@@ -7,13 +7,8 @@
 {% endblock %}
 {% block content %}
 {% comment %} {% include 'registers/includes/register_menu.html'%} {% endcomment %}
-<script>
-  function openQR(URL){ 
-   window.open("{% url 'registers:qrcode' %}","ventana1","width=800,height=600,scrollbars=NO") 
-  }
-</script>
-<div>
-  <a href="{% url 'registers:registers' %}"><button type="button" class="btn btn-primary rigth" ><i class="fa fa-fw fa-angle-double-left "></i> Regresar</button></a>
+<div class="col-11 text-right">
+  <a href="{% url 'registers:registers' %}"><button type="button" class="btn btn-primary" ><i class="fa fa-fw fa-angle-double-left "></i> Regresar</button></a>
 </div>
 <main role="main">
   <div class="container">
@@ -35,3 +30,9 @@
   </div>
 </main>
 {% endblock %}
+
+<script>
+  function openQR(URL){ 
+   window.open("{% url 'registers:qrcode' %}","ventana1","width=800,height=600,scrollbars=NO") 
+  }
+</script>

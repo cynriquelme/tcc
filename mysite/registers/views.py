@@ -21,7 +21,7 @@ from flask import Flask, render_template, request
 # Create your views here.
 class RegisterListView(ListView):
     template_name= 'registers/register_list.html'
-    queryset = Register.objects.all().order_by('-id')
+    queryset = Register.objects.all().order_by('-registration_date')
     paginate_by = 5
     
     def get_context_data(self, **kwargs):

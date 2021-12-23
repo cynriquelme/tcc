@@ -3,25 +3,55 @@
 {% block title %}Reportes{% endblock %}
 {% block background %}{% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
 {% block headers %}
-    <h1>Reportes</h1>
+    <h1 style="text-align: center;">Reportes</h1>
 {% endblock %}
 {% block content %}
-{% include 'reports/includes/report_menu.html' %}
 <main role="main">
   <div class="container mb-4">
-    {% for report in report_list|dictsort:"id" %}
-      <div>
+      {% comment %} <div>
         {% comment %} {% if user.id == report.user.id %} {% endcomment %}
-          <h2>{{report.description}}</h2>
+          {% comment %} <h2>{{report.description}}</h2>
           <div>
             <p>{{report.sub_category|striptags|safe|truncatechars:"200"}}</p>
               <a href="{% url 'reports:update' report.id %}">Editar</a>
               <a href="{% url 'reports:delete' report.id %}">Borrar</a>
-          </div>
+          </div> {% endcomment %}
         {% comment %} {% endif %} {% endcomment %}
+      <a href="{% url 'reports:create' %}"><button type="button" class="btn btn-primary"><i class="fa fa-fw fa-plus "></i> Crear Registro</button></a>
+      <div class="table-responsive">  
+        <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Tipo de Reporte</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Descripción</th>
+             <th scope="col">Estado</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for report in report_list|dictsort:"id" %}
+          <tr>
+            <td>{{ report.type_report}}</td>
+            <td>{{ report.found_date|date:'d/m/Y'}}</td>
+            <td>{{ report.found_time}}</td>
+            <td>{{ report.description}}</td>
+            {% if report.status is True %}
+            <td>Activo</td>
+            {% else%}
+            <td>Inactivo</td>
+            {% endif %}
+            <td>{% if report.image %}<img src="{{ report.image.url }}" class="img-fluid">{% endif %}</td>
+            <td><a href="{% url 'reports:update' report.id %}"><button type="button" class="btn btn-secondary">Editar <i class="fa fa-fw fa-edit"></i></button></a></td>
+            <td><a href="{% url 'reports:delete' report.id %}"><button type="button" class="btn btn-danger">Eliminar<i class="fa fa-fw fa-trash"></i></button></a></td>  
+          </tr>
+          {% endfor %}
+        </tbody>
+        </table>
       </div>
-    {% endfor %}
-  </div>
   {% if is_paginated %}
     <div class= "mt-3">
       <ul class= "pagination justify-content-center">

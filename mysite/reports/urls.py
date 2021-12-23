@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from .views import ReportListView, ReportDetailView, report_new, ReportDelete, ReportUpdate
+from django.conf import settings 
+from django.conf.urls.static import static 
 
 reports_patterns = ([
     path('', ReportListView.as_view(), name='reports'),
@@ -9,3 +11,4 @@ reports_patterns = ([
     path('update/<int:pk>/', ReportUpdate.as_view(), name= 'update'),
     path('delete/<int:pk>/', ReportDelete.as_view(), name= 'delete'),
 ], 'reports' )
+

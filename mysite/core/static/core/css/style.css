@@ -144,3 +144,6 @@ ul.filter-option li:hover ul {
     border: 1px solid #ccc;
 }
 
+p.img-center {
+    text-align: center;
+}

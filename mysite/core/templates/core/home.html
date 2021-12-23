@@ -41,7 +41,7 @@
               {% if report.status == True %}
             <div class="card" style="width: 18rem; margin: 20px; margin-bottom: 10px;">
                 {% if report.image %}
-                    <img class="img-fluid" src="{{report.image}}" alt="Card image cap">
+                    <img class="img-fluid" src="{{report.image.url}}" alt="Card image cap">
                 {% else %}
                     <img class="img-fluid" src="{% static 'core/img/img-reporte.png' %}" alt="Card image cap">
                 {% endif %}
@@ -70,6 +70,13 @@
                                 <p class="view-text text-capitalize"> <b>SubCategoría:</b> {{report.sub_category}}</p>
                                 <p class="view-text text-capitalize"> <b>Fecha:</b> {{report.found_date}} <b>Hora:</b> {{report.found_time}}</p>
                                 <p class="view-text text-capitalize">{{report.description}}</p>
+                                <p class="img-center">
+                                {% if report.image %}
+                                    <img class="img-fluid" src="{{report.image.url}}" alt="Card image cap">
+                                {% else %}
+                                    <img class="img-fluid" src="{% static 'core/img/img-reporte.png' %}" alt="Card image cap">
+                                {% endif %}
+                                </p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
