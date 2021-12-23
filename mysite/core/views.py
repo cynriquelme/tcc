@@ -11,7 +11,7 @@ def home(request):
     categories = Category.objects.all()
     sub_categories = SubCategory.objects.all()
     template = "core/home.html"
-    paginator = Paginator(reports, 10) # Show 25 contacts per page.
+    paginator = Paginator(reports, 6) # Show 25 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

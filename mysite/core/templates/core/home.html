@@ -32,7 +32,7 @@
                         {% endfor %}
                     </ul>
             </div>
-        <button id="btn_filter" class="btn btn-secondary mb-2">Filtrar</button>
+        <button id="btn_filter" class="btn btn-secondary mb-2">Filtrar </button>
     </div>
     <div id="main">
         <h1 class="title" style="text-align: center; margin-top: 5px;">Últimos Reportes</h1>
@@ -105,7 +105,7 @@
                     {% endif %}
 
                     {% for page_obj in page_obj.paginator %}
-                        <li class="page-item {% if page_obj.number == page_obj %} active {% endif %}">
+                        <li class="page-item {% if page_obj == page_obj.paginator %} active {% endif %}">
                             <a href="?page={{ page_obj.number }}" class="page-link">{{ page_obj.number }}</a>
                         </li>
                     {% endfor %}
