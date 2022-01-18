@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crud.apps.CrudConfig',
     'registers.apps.RegistersConfig',
     'reports.apps.ReportsConfig',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

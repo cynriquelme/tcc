@@ -18,7 +18,7 @@ $(function(){
 
     function getError(err)
     {
-        initialize(13.30272, -87.194107);
+        initialize(-25.3342, -57.5373);
     }
 
     function initialize(lat, lng)
@@ -46,9 +46,14 @@ $(function(){
 
     function getMarkerCoords(marker)
     {
-        var markerCoords = marker.getPosition();
-        $('#id_coord_latitude').val(markerCoords.lat());
-        $('#id_coord_length').val(markerCoords.lng());
+        if ("{{ report.coord_latitude}}"== null) { 
+            $('#id_coord_latitude').val("{{ report.coord_latitude}}");
+            $('#id_coord_length').val("{{ report.coord_length}}");
+         } else { 
+            var markerCoords = marker.getPosition();
+            $('#id_coord_latitude').val(markerCoords.lat());
+            $('#id_coord_length').val(markerCoords.lng());
+         }
     }
 
     $('#form_coords').submit(function(e){

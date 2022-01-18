@@ -9,32 +9,18 @@
 {% endblock %}
 
 {% block content %}
-    <div class="filter-section">
-        <div class="filter-title">Filtrar por</div>
-            <div style="padding: 0px 0px 0px 0px;">
-                    <ul class="filter-option">
-                        <div class="input-group date" id="filtro_FechaDesde">
-                            <label for="filterdate" class="mt-2 mr-2">Fecha desde</label>
-                            <input type="date" class="form-control mb-2 mt-1 mr-5" id="filterdate" name="filterdate">
-                            <label for="filterdate2" class="mt-2 mr-2">Fecha hasta</label>
-                            <input type="date" class="form-control mb-2 mt-1 mr-5" id="filterdate2" name="filterdate2">
-                        </div>
-                    {% for category in categories %}
-                        <li class="float">{{category.description}}<i class="fa fa-fw fa-angle-down" id="icon"></i>
-                            {% for sub_category in sub_categories %}
-                                {% if sub_category.category_id == category.id%}
-                                    <ul>
-                                        <li><a href=""><input type="checkbox" id="{{sub_category.id}}"> {{sub_category.description}}</a></li>
-                                    </ul>
-                                {% endif %}
-                            {% endfor %}
-                        </li>
-                        {% endfor %}
-                    </ul>
-            </div>
-        <button id="btn_filter" class="btn btn-secondary mb-2">Filtrar </button>
-    </div>
     <div id="main">
+        <div class="row">
+            <div class="col">
+                <div class="card card-body">
+                    <form method="get">
+                        <h3 class="filter-title">Filtros</h3>
+                            {{reports_filter.form}}
+                        <button class="btn btn-secondary" type="submit">Filtrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
         <h1 class="title" style="text-align: center; margin-top: 5px;">Últimos Reportes</h1>
         <div class="row"> 
             {% for report in page_obj  %}
@@ -80,7 +66,7 @@
                                 </p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                                 <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                             </div>
                         </div>
@@ -120,6 +106,7 @@
                         </li>
                     {% endif %}
                 </ul>
+                <h1>Cantidad de Reportes {{reports_count}}</h1>
         </div>
     </div>
     
@@ -135,7 +122,6 @@
             document.body.style.backgroundColor = "white";
         }
 
-        
         button.onclick = function() {
             var filterdate =  $('#filterdate').val();
             var filterdate2 =  $('#filterdate2').val();

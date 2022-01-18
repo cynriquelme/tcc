@@ -15,3 +15,8 @@ function mostrarPassword(){
         $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
     });    
 });
+document.getElementById("id_star_date").value = "";
+document.getElementById("id_end_date").value = "";
+document.getElementById("id_description").value = "";
+document.getElementById("id_type_report").value = "";
+document.getElementById("id_sub_category").value = "";
