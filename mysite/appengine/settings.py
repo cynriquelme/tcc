@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'registers.apps.RegistersConfig',
     'reports.apps.ReportsConfig',
     'django_filters',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

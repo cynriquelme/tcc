@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.forms import TextInput
 import django_filters 
 from django_filters import DateFilter, CharFilter
@@ -6,9 +7,9 @@ from crud.models import Category, SubCategory
 from reports.models import Report
 
 class ReportF(django_filters.FilterSet):
-    star_date = DateFilter(field_name="found_date", lookup_expr='gte')
-    end_date = DateFilter(field_name="found_date", lookup_expr='lte')
-    description = CharFilter(field_name="description", lookup_expr='icontains')
+    star_date = DateFilter(label="Fecha Desde",field_name="found_date", lookup_expr='gte')
+    end_date = DateFilter(label="Fecha Hasta",field_name="found_date", lookup_expr='lte')
+    description = CharFilter(label="Descripción",field_name="description", lookup_expr='icontains')
     class Meta:
         model = Report
         fields = ['type_report', 'sub_category', 'description']
