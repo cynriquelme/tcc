@@ -18,13 +18,14 @@ from django.template import RequestContext
 # Create your views here.
 class ReportListView(ListView):
     template_name = 'reports/report_list.html­'
-    queryset = Report.objects.all().order_by('-found_date')
     paginate_by = 5
+
+    def get_queryset(self, *args, **kwargs):
+        return Report.objects.filter(user=self.request.user)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context ['message'] = 'Lista de Reportes'
-
         return context
 
 class ReportDetailView(DetailView):

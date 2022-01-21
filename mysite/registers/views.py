@@ -1,7 +1,7 @@
 from os import name
 import django
 from django.contrib.admin.views import decorators
-from .models import Register, CodeQR
+from .models import Register
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -11,7 +11,6 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
 from django import forms
 from six import BytesIO
-import qrcode
 from .forms import RegisterForm
 import cv2
 from pyzbar.pyzbar import decode
@@ -21,9 +20,11 @@ from flask import Flask, render_template, request
 # Create your views here.
 class RegisterListView(ListView):
     template_name= 'registers/register_list.html'
-    queryset = Register.objects.all().order_by('-registration_date')
     paginate_by = 5
     
+    def get_queryset(self, *args, **kwargs):
+        return Register.objects.filter(user=self.request.user)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['message'] = 'Lista de Registros'
@@ -47,7 +48,7 @@ def register_new(request):
         form = RegisterForm()
         print("entro 2 register")
     return render(request, 'registers/register_form.html', {'form': form})
-
+    
 
 class RegisterUpdate(UpdateView):
     model = Register
@@ -70,29 +71,6 @@ class RegisterDelete(DeleteView):
 
 def index(request):
     return HttpResponse('ok')
-
-@method_decorator(staff_member_required, name='dispatch')
-class CodeQRCreate(CreateView):
-    model = CodeQR
-    fields = ['generated_code', 'register']
-    success_url = reverse_lazy('registers:registers')
-
-    def get_object(self):
-        # recuperar el objeto que se va a editar
-        return self.request.user
-
-def generate_qrcode(request):
-    user = request.user.id
-    print(user)
-    data = "http://127.0.0.1:8000/accounts/profile/owner/" + str(user) + "/" 
-    img = qrcode.make(data)
-
-    buf = BytesIO()		# BytesIO se da cuenta de leer y escribir bytes en la memoria
-    img.save(buf)
-    image_stream = buf.getvalue()
-
-    response = HttpResponse(image_stream, content_type="image/png")
-    return response
     
 def scanner_qr(request):
     if request.method == "POST" and request.POST:

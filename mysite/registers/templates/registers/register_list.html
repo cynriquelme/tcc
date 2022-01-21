@@ -8,14 +8,6 @@
 {% block content %}
 <main role="main">
   <div class="container mb-4">
-      {% comment %} <div>
-          <h2>{{ register.description}}</h2>
-          <div>   
-            <p>{{register.sub_category|striptags|safe|truncatechars:"200"}}</p>
-              <a href="{% url 'registers:update' register.id %}">Editar</a>
-              <a href="{% url 'registers:delete' register.id %}">Borrar</a>
-          </div>
-      </div> {% endcomment %}
       <a href="{% url 'registers:create' %}"><button type="button" class="btn btn-primary"><i class="fa fa-fw fa-plus "></i> Crear Registro</button></a>
       <div class="table-responsive">  
         <table class="table mt-3">
@@ -32,30 +24,35 @@
         </thead>
         <tbody>
           {% for register in register_list|dictsort:"id" %}
+          {% if user == register.user %}
           <tr>
             <td>{{ register.registration_date|date:'d/m/Y'}}</td>
             <td>{{ register.sub_category.category.description}}</td>
             <td>{{ register.sub_category.description}}</td>
             <td>{{ register.description}}</td>
-            <td><button type="button" class="btn btn-info">Ver QR <i class="fa fa-fw fa-eye"></i></button></td>
+            {% comment %} <td><a href="{% url 'registers:update' register.id %}"><button type="button" class="btn btn-info">Ver QR <i class="fa fa-fw fa-eye"></i></button></td> {% endcomment %}
+            <td>{% if register.qr_code %}<img src="{{ register.qr_code.url }}" class="img-fluid">{% endif %}</td>
             <td><a href="{% url 'registers:update' register.id %}"><button type="button" class="btn btn-secondary">Editar <i class="fa fa-fw fa-edit"></i></button></a></td>
             <td><a href="{% url 'registers:delete' register.id %}"><button type="button" class="btn btn-danger">Eliminar<i class="fa fa-fw fa-trash"></i></button></a></td>  
           </tr>
+          {% endif %}
           {% endfor %}
         </tbody>
         </table>
       </div>
+    
+    <!-- Menú de paginación -->
     {% if is_paginated %}
       <div class="mt-3">
         <ul class="pagination justify-content-center">
 
           {% if page_obj.has_previous %}
             <li class="page-item">
-              <a href="?page={{ page_obj.previous_page_number }}" class="page-link">Anterior</a>
+              <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;</a>
             </li>
           {% else %}
             <li class="page-item disabled">
-              <a href="#" class="page-link">Anterior</a>
+              <a href="#" class="page-link">&laquo;</a>
             </li>
           {% endif %}
 
@@ -67,11 +64,11 @@
 
           {% if page_obj.has_next %}
             <li class="page-item">
-              <a href="?page={{ page_obj.next_page_number }}" class="page-link">Siguiente</a>
+              <a href="?page={{ page_obj.next_page_number }}" class="page-link">&raquo;</a>
             </li>
           {% else %}
             <li class="page-item disabled">
-              <a href="#" class="page-link">Siguiente</a>
+              <a href="#" class="page-link">&raquo;</a>
             </li>
           {% endif %}
         </ul>

@@ -16,7 +16,7 @@ def home(request):
     reports_filter = ReportF(request.GET, queryset=reports)
     reports = reports_filter.qs
     template = "core/home.html"
-    paginator = Paginator(reports, 20) #Se visualizará 20 reportes por página
+    paginator = Paginator(reports, 9) #Se visualizará 20 reportes por página
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Register, CodeQR
+from .models import Register
 from crud.models import Category, SubCategory
 
 # Register your models here.
@@ -12,4 +12,3 @@ class RegistersAdmin(admin.ModelAdmin):
         }
 
 admin.site.register(Register, RegistersAdmin)
-admin.site.register(CodeQR, RegistersAdmin)

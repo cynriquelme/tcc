@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
@@ -15,7 +16,7 @@ class Report(models.Model):
     description = models.CharField(max_length=600, verbose_name="Descripción", unique=True)
     found_date = models.DateField(verbose_name="Fecha", default=formatedDay)
     found_time = models.TimeField(verbose_name="Hora", default=formatedHour)
-    image = models.ImageField(verbose_name="Imagen", upload_to='reports')
+    image = models.ImageField(verbose_name="Imagen", upload_to='reports', default=None)
     status = models.BooleanField(verbose_name="Activo", default=True, help_text="Indica si el registro está Activo o Inactivo.")
     type_report = models.ForeignKey(TypeReport, on_delete=models.CASCADE, default=0, verbose_name="Tipo de Reporte")
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default=0, verbose_name="Sub Categoría")
@@ -28,7 +29,7 @@ class Report(models.Model):
     class Meta:
         verbose_name = 'Reporte'
         verbose_name_plural = 'Reportes'
-        ordering = ["-found_date"]
+        ordering = ['-create_date']
 
     def __str__(self):
         return self.description
