@@ -16,3 +16,8 @@ class RegisterForm(forms.ModelForm):
 
 class UploadFileForm(forms.Form):
     file = forms.FileField(required=False)
+
+class QrForm(forms.ModelForm):
+    class Meta:
+            model = Register
+            fields = ['qr_code']

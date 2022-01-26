@@ -11,7 +11,7 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse, reverse_lazy
 from django import forms
 from six import BytesIO
-from .forms import RegisterForm
+from .forms import QrForm, RegisterForm
 import cv2
 from pyzbar.pyzbar import decode
 from PIL import Image
@@ -73,9 +73,16 @@ def index(request):
     return HttpResponse('ok')
     
 def scanner_qr(request):
-    if request.method == "POST" and request.POST:
-        archivo = request.POST.get("archivo")
-        d = decode(Image.open("registers/static/registers/img/qrprueba.png"))
-        print(d[0].data.decode("ascii"))
-    return render(request,'registers/scanner_qr_form.html')
+    if request.method == 'POST':
+        formulario = QrForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            ruta_qr = request.FILES.get('archivo')
+            d = decode(Image.open(ruta_qr))
+            read_qr = d[0].data.decode("ascii")
+            print(read_qr)
+            return render(request,"registers/scanner_qr_form.html", {'form': formulario, 'read_qr': read_qr})
+    else:
+        formulario = QrForm()
+    return render(request, "registers/scanner_qr_form.html",{'form': formulario})
+
 

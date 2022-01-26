@@ -13,15 +13,11 @@
       <div class="col-md-9 mx-auto">
         <div>
             <form action="" method="post" id="f_scan" enctype="multipart/form-data">{% csrf_token %}
-                  <input type="file" name="archivo" id="id_archivo" size="80" onchange="return cambiarFile();" />
-                  <br> <br>
+                  <input type="file" name="archivo" id="id_archivo" size="80"  class="mb-3 mt-3" />
                   <input type="submit" class="form-control btn btn-primary" value="Escanear" name="btn_escanear" id="btn_escanear" onclick="OpenW()">
                 <br>
-                <p id="valueInput"></p> 
-                <div class="text-center">
-                  
-                </div>
-                
+                <label for="read" class="mb-1 mt-3">Resultado Obtenido:</label>
+                <a href="{{ read_qr }}" id="read" class="form-control mb-3 mt-3">{{ read_qr }}</a>
             </form>
         </div>
       </div>
@@ -29,18 +25,4 @@
   </div>
 </main>
 
-<script> 
-
-  function cambiarFile(){
-      const input = document.getElementById('id_archivo');
-      if(input.files && input.files[0])
-          console.log("File Seleccionado : ", input.files[0]);
-      
-  }
-  console.log("Sin Archivo Seleccionado " + document.getElementById('id_archivo').files[0]);
-
-  function OpenW(url){
-    var win = window.open("http://127.0.0.1:8000/accounts/profile/owner/1/", '_blank');
-  }
-</script> 
 {% endblock %}
