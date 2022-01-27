@@ -7,10 +7,11 @@ import qrcode
 from io import BytesIO
 from django.core.files import File
 from PIL import Image, ImageDraw
+from .validators import valid_extension
 
 class Register(models.Model):
     description = models.CharField(max_length=600, verbose_name="Descripción", unique=True)
-    qr_code = models.ImageField(upload_to='qr_codes',null=False, blank=True)
+    qr_code = models.ImageField(verbose_name= "", upload_to='qr_codes',null=False, blank=True,validators=[valid_extension])
     registration_date = models.DateField(auto_now_add=True, verbose_name="Fecha de Registro")
     status = models.BooleanField(verbose_name="Activo", default=True, help_text="Indica si el registro está Activo o Inactivo.")
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default=0, verbose_name="Sub Categoría")

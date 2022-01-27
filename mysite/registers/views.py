@@ -76,11 +76,16 @@ def scanner_qr(request):
     if request.method == 'POST':
         formulario = QrForm(request.POST, request.FILES)
         if formulario.is_valid():
-            ruta_qr = request.FILES.get('archivo')
+            ruta_qr = request.FILES.get('qr_code')
             d = decode(Image.open(ruta_qr))
-            read_qr = d[0].data.decode("ascii")
-            print(read_qr)
-            return render(request,"registers/scanner_qr_form.html", {'form': formulario, 'read_qr': read_qr})
+            print("The total number of elements in the list: ", len(d))
+            if (len(d)>0):
+                read_qr = d[0].data.decode("ascii")
+                result = ""
+            else:
+                read_qr = ""
+                result = "La imagen no puede ser escaneada. Verifique que sea un Código QR."
+            return render(request,"registers/scanner_qr_form.html", {'form': formulario, 'read_qr': read_qr,'result': result})
     else:
         formulario = QrForm()
     return render(request, "registers/scanner_qr_form.html",{'form': formulario})

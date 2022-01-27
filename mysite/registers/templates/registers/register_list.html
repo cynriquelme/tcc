@@ -18,6 +18,7 @@
             <th scope="col">Sub Categoría</th>
             <th scope="col">Descripción</th>
             <th scope="col">QR</th>
+            <th scope="col">Descargar QR</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
           </tr>
@@ -32,8 +33,9 @@
             <td>{{ register.description}}</td>
             {% comment %} <td><a href="{% url 'registers:update' register.id %}"><button type="button" class="btn btn-info">Ver QR <i class="fa fa-fw fa-eye"></i></button></td> {% endcomment %}
             <td>{% if register.qr_code %}<img src="{{ register.qr_code.url }}" class="img-fluid">{% endif %}</td>
-            <td><a href="{% url 'registers:update' register.id %}"><button type="button" class="btn btn-secondary">Editar <i class="fa fa-fw fa-edit"></i></button></a></td>
-            <td><a href="{% url 'registers:delete' register.id %}"><button type="button" class="btn btn-danger">Eliminar<i class="fa fa-fw fa-trash"></i></button></a></td>  
+            <td><a onclick="downloadFile('{{ register.qr_code.url }}');" ><button type="button" class="btn btn-primary" id="btn" title="Descargar QR"><i class="fa fa-fw fa-download"></i></button></a></td>
+            <td><a href="{% url 'registers:update' register.id %}"><button type="button" class="btn btn-secondary" title="Editar">Editar <i class="fa fa-fw fa-edit"></i></button></a></td>
+            <td><a href="{% url 'registers:delete' register.id %}"><button type="button" class="btn btn-danger" title="Elminar">Eliminar<i class="fa fa-fw fa-trash"></i></button></a></td>  
           </tr>
           {% endif %}
           {% endfor %}
@@ -77,4 +79,15 @@
 
   </div>
 </main>
+
+<script>
+  function downloadFile(filePath){
+    var link=document.createElement('a');
+    link.href = filePath;
+    link.download = filePath.substr(filePath.lastIndexOf('/') + 1);
+    link.click();
+  }
+
+</script>
+
 {% endblock %}

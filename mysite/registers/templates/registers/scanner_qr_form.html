@@ -12,9 +12,10 @@
     <div class="row mt-3 mb-3">
       <div class="col-md-9 mx-auto">
         <div>
+            <p style="color:red">{{ result }}</p>
             <form action="" method="post" id="f_scan" enctype="multipart/form-data">{% csrf_token %}
-                  <input type="file" name="archivo" id="id_archivo" size="80"  class="mb-3 mt-3" />
-                  <input type="submit" class="form-control btn btn-primary" value="Escanear" name="btn_escanear" id="btn_escanear" onclick="OpenW()">
+                  {{ form.as_table }}
+                  <input type="submit" class="form-control btn btn-primary mt-3" value="Escanear" name="btn_escanear" id="btn_escanear" onclick="OpenW()">
                 <br>
                 <label for="read" class="mb-1 mt-3">Resultado Obtenido:</label>
                 <a href="{{ read_qr }}" id="read" class="form-control mb-3 mt-3">{{ read_qr }}</a>
