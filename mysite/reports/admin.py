@@ -1,4 +1,3 @@
-from crud.models import TypeReport, SubCategory
 from django.contrib import admin
 from .models import Report
 # Register your models here.

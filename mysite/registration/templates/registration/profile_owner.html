@@ -13,18 +13,31 @@
             {% if user.is_authenticated %}
               <div class="col-md-10">
                 <h2 align="center">Información del Propietario</h2>
-                {% for p in User %}
-                  <td>
-                    {{ p.name }}
-                  </td>
-                {% endfor %}
-                  {% if profile.avatar %}
-                      <center><img src="{{profile.avatar.url}}" class="img-fluid"></center>
-                  {% else %}
-                      <center><img src="{% static 'registration/img/no-avatar.png' %}" class="img-fluid"></center>
-                  {% endif %}
-                <input type="usuario" value="{{profile.user}}" class="form-control mt-3" readonly placeholder="Usuario">
-                <input type="email" value="{{profile.user.email}}" class="form-control mt-3" readonly placeholder="Correo">
+                {% if profile.avatar %}
+                    <center><img src="{{profile.avatar.url}}" class="img-fluid"></center>
+                {% else %}
+                    <center><img src="{% static 'registration/img/no-avatar.png' %}" class="img-fluid"></center>
+                {% endif %}
+                <p class="mb-1 mt-2"><b>Nombres:</b></p>
+                <input type="text" value="{{profile.person.name}}" class="form-control mt-3" readonly placeholder="Nombres">
+                <p class="mb-1 mt-2"><b>Apellidos:</b></p>
+                <input type="text" value="{{profile.person.last_name}}" class="form-control mt-3" readonly placeholder="Apellidos">
+                <p class="mb-1 mt-2"><b>Fecha de Nacimiento:</b></p>
+                <input type="text" value="{{profile.person.birthday}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Teléfono:</b></p>
+                <input type="text" value="{{profile.person.phone}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Sexo:</b></p>
+                <input type="text" value="{{profile.person.sexe.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>País:</b></p>
+                <input type="text" value="{{profile.person.country.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Departamento:</b></p>
+                <input type="text" value="{{profile.person.departament.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Ciudad:</b></p>
+                <input type="text" value="{{profile.person.city.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Dirección:</b></p>
+                <input type="text" value="{{profile.person.direction}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Correo:</b></p>
+                <input type="text" value="{{profile.user.email}}" class="form-control mt-3" readonly placeholder="Correo">
               </div>
             {% else %}
                 <h2>Debe Ingresar para poder visualizar los datos del Propietario --><a href="{% url 'login'%}?next={{request.path}}">Iniciar Sesión</a></h2>

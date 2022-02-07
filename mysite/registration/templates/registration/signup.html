@@ -10,7 +10,26 @@
         <div class="card">
           <div class="col-md-9 mx-auto mb-5 mt-5">
           <form action="" method="post">{% csrf_token %}
-            <h3 class="mb-4 text-center">Registrarse</h3>
+            <h3 class="mb-4 text-center">Registrarse</h3>      
+            <p for="{{form2.name.id_for_label}}"><b>{{form2.name.label}}</b></p>
+            {{form2.name}}
+            <p for="{{form2.last_name.id_for_label}}"><b>{{form2.last_name.label}}</b></p>
+            {{form2.last_name}}
+            <p for="{{form2.birthday.id_for_label}}"><b>{{form2.birthday.label}}</b></p>
+            {{form2.birthday}}
+            <p for="{{form2.phone.id_for_label}}"><b>{{form2.phone.label}}</b></p>
+            {{form2.phone}}
+            <p for="{{form2.sexe.id_for_label}}"><b>{{form2.sexe.label}}</b></p>
+            {{form2.sexe}}
+            <p for="{{form2.country.id_for_label}}"><b>{{form2.country.label}}</b></p>
+            {{form2.country}}
+            <p for="{{form2.departament.id_for_label}}"><b>{{form2.departament.label}}</b></p>
+            {{form2.departament}}
+            <p for="{{form2.city.id_for_label}}"><b>{{form2.city.label}}</b></p>
+            {{form2.city}}
+            <p for="{{form2.direction.id_for_label}}"><b>{{form2.direction.label}}</b></label>
+            {{form2.direction}}
+            <p for="{{form.username.id_for_label}}"><b>{{form.username.label}}</b></label>
             {{form.as_p}}
             <p class="text-info">Para concluir el Registro de Usuario favor leer los Términos y Condiciones.</p>
             <input style="opacity:1;" type="checkbox" data-required="1" name="terminos" id="terminos"> 

@@ -7,5 +7,5 @@ urlpatterns = [
     path('profile/', ProfileUpdate.as_view(), name="profile"),
     path('profile/email/', EmailUpdate.as_view(), name="profile_email"),
     path('terms/', views.terms_v, name="terms"),
-    path('profile/owner/<int:pk>/', views.profile_owner_v, name="profile_owner"),
+    path('profile/owner/<int:user>/', views.profile_owner_v, name="profile_owner"),
 ]

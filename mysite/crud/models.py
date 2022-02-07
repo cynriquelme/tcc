@@ -88,31 +88,6 @@ class Sexe(models.Model):
         return self.description
 
 
-
-class Person(models.Model):
-    type_document = models.ForeignKey(TypeDocument, on_delete=models.CASCADE, default=0, verbose_name="Tipo de Documento")
-    numer_document = models.CharField(max_length=50, verbose_name="Número de Documento")
-    names = models.CharField(max_length=200, verbose_name="Nombres")
-    surnames = models.CharField(max_length=200, verbose_name="Apellidos")
-    birthday = models.DateField(verbose_name="Fecha de Nacimiento")
-    phone = models.CharField(max_length=50, verbose_name="Teléfono")
-    email = models.EmailField(max_length=200, verbose_name="Email")
-    sexe = models.ForeignKey(Sexe, on_delete=models.CASCADE, default=0, verbose_name="Sexo")
-    city = models.ForeignKey(City, on_delete=models.CASCADE, default=0, verbose_name="Ciudad")
-    departament = models.ForeignKey(Departament, on_delete=models.CASCADE, default=0, verbose_name="Departamento")
-    country = models.ForeignKey(Country, on_delete=models.CASCADE, default=0, verbose_name="País")
-    direction = models.CharField(max_length=200, verbose_name="Domicilio")
-    create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
-
-    class Meta:
-        verbose_name = 'Persona'
-        verbose_name_plural = 'Personas'
-        ordering = ["-create_date"]
-
-    def __str__(self):
-        return self.names + ' ' + self.surnames
-
 class Category(models.Model):
     description = models.CharField(max_length=200, verbose_name="Descripción", unique=True)
     create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")

@@ -21,9 +21,27 @@
             <!-- Formulario -->
             <div class="col-md-10">
               <h3>Perfil</h3>
-              <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
-              <input type="usuario" value="{{request.user}}" class="form-control mt-3" readonly placeholder="Usuario">
-              <input type="email" value="{{request.user.email}}" class="form-control mt-3" readonly>
+                <input type="file" name="avatar" class="form-control-file mt-3" id="id_avatar">
+                <p class="mb-1 mt-2"><b>Nombres:</b></p>
+                <input type="text" value="{{profile.person.name}}" class="form-control mt-3" readonly placeholder="Nombres">
+                <p class="mb-1 mt-2"><b>Apellidos:</b></p>
+                <input type="text" value="{{profile.person.last_name}}" class="form-control mt-3" readonly placeholder="Apellidos">
+                <p class="mb-1 mt-2"><b>Fecha de Nacimiento:</b></p>
+                <input type="text" value="{{profile.person.birthday}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Teléfono:</b></p>
+                <input type="text" value="{{profile.person.phone}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Sexo:</b></p>
+                <input type="text" value="{{profile.person.sexe.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>País:</b></p>
+                <input type="text" value="{{profile.person.country.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Departamento:</b></p>
+                <input type="text" value="{{profile.person.departament.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Ciudad:</b></p>
+                <input type="text" value="{{profile.person.city.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Dirección:</b></p>
+                <input type="text" value="{{profile.person.direction}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                <p class="mb-1 mt-2"><b>Correo:</b></p>
+                <input type="text" value="{{profile.user.email}}" class="form-control mt-3" readonly placeholder="Correo">
                 <p class="mt-3">Si desea modificar su correo haz clic <a href="{% url 'profile_email' %}">aquí</a>. <br>
                     Para modificar su contraseña haz clic <a href="{% url 'password_change' %}">aquí</a>.
                 </p>

@@ -1,27 +1,50 @@
+from re import template
 from django.contrib.auth.models import User
 from django.utils import decorators
 from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from .forms import UserCreationFormWithEmail, ProfileForm, EmailForm
+from .forms import UserCreationFormWithEmail, ProfileForm, EmailForm, PersonForm
 from django.views.generic import CreateView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from django import forms
-from .models import Profile
+from .models import Profile, Person
 from django.shortcuts import redirect, render, HttpResponse
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 
 
 # Create your views here.
 class SignUpView(CreateView):
+    model = Person
     form_class = UserCreationFormWithEmail
+    second_form_class = PersonForm
     success_url = reverse_lazy('login')
     template_name = 'registration/signup.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(SignUpView, self). get_context_data(**kwargs)
+        if 'form' not in context:
+            context['form'] = self.form_class(self.request.GET)
+        if 'form2' not in context:
+            context['form2'] = self.second_form_class(self.request.GET)
+        return context
+
+    def post(self, request,*args, **kwargs):
+        self.object = self.get_object
+        form = self.form_class(request.POST)
+        form2 = self.second_form_class(request.POST)
+        if form.is_valid() and form2.is_valid():
+            person = form.save(commit=False)
+            person.user = form2.save()
+            person.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return self.render_to_response(self.get_context_data(form=form, form2= form2))
+
     def get_success_url(self):
         return reverse_lazy('login') + '?success'
-    
+
     def get_form(self, form_class=None):
         form = super(SignUpView, self).get_form()
         # Modificar en tiempo real
@@ -61,14 +84,14 @@ class EmailUpdate(UpdateView):
 def terms_v(request):
     return render(request,'registration/terms.html')
 
-def profile_owner_v(request,pk):
+def profile_owner_v(request,user):
     try:
-        profile_id=Profile.objects.get(pk=pk)
+        profile=Profile.objects.get(user=user)
     except Profile.DoesNotExist:
         return HttpResponse('El Propietario Ingresado no existe. ')
     
     return render(
         request,
         'registration/profile_owner.html',
-        context={'profile':profile_id,}
+        context={'profile':profile}
     )

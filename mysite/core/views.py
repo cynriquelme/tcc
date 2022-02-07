@@ -7,7 +7,6 @@ from django.core.paginator import Paginator
 from django.shortcuts import render
 from .filters import ReportF
 
-
 def home(request):
     reports = Report.objects.all()
     categories = Category.objects.all()
@@ -22,3 +21,4 @@ def home(request):
 
     return render(request, template,{"reports":reports, "categories":categories, "sub_categories":sub_categories,"reports_count":reports_count, "reports_filter":reports_filter, 
     "request":request, 'page_obj': page_obj})
+

@@ -1,11 +1,9 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block title %}Escanear QR{% endblock %}
-
 {% block headers %}
   <h3>Escanear Código QR</h3>
-  
-{% endblock %}
+  {% endblock %}
 {% block content %}
 <main role="main">
   <div class="container">
@@ -15,7 +13,7 @@
             <p style="color:red">{{ result }}</p>
             <form action="" method="post" id="f_scan" enctype="multipart/form-data">{% csrf_token %}
                   {{ form.as_table }}
-                  <input type="submit" class="form-control btn btn-primary mt-3" value="Escanear" name="btn_escanear" id="btn_escanear" onclick="OpenW()">
+                  <input type="submit" class="form-control btn btn-primary mt-3" value="Escanear" name="btn_escanear" id="btn_escanear">
                 <br>
                 <label for="read" class="mb-1 mt-3">Resultado Obtenido:</label>
                 <a href="{{ read_qr }}" id="read" class="form-control mb-3 mt-3">{{ read_qr }}</a>
