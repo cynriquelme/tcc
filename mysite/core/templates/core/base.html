@@ -38,6 +38,9 @@
             <a class="nav-link" href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Inicio</a><span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}"><i class="fa fa-fw fa-search"></i> Búsquedas</a></a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'registers:scanner_qr' %}"><i class="fa fa-qrcode"></i> Escanear QR</a></a>
           </li>
           <li class="nav-item">
@@ -47,17 +50,6 @@
             <a class="nav-link" href="{% url 'reports:reports' %}"><i class="fa fa-fw fa-folder"></i> Reportes</a></a>
           </li>
           {% endif %}
-    
-          {% comment %} <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-fw fa-plus"></i> Crud
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="{% url 'cities' %}">Ciudades</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li> {% endcomment %}
             {% if not request.user.is_authenticated %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'login' %}"><i class="fa fa-fw fa-user"></i> Acceder</a>
