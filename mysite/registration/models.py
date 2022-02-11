@@ -5,7 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
-from crud.models import TypeDocument, Sexe, City, Departament, Country
+from crud.models import Sexe, City, Departament, Country
 
 def custom_uploap_to(instance, filename):
     old_instance = Profile.objects.get(pk=instance.pk)

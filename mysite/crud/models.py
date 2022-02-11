@@ -17,19 +17,6 @@ class TypeReport(models.Model):
     def __str__(self):
         return self.description
 
-class TypeDocument(models.Model):
-    description = models.CharField(max_length=200, verbose_name="Descripción", unique=True)
-    create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
-    update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
-
-    class Meta:
-        verbose_name = 'Tipo de Documento'
-        verbose_name_plural = 'Tipos de Documentos'
-        ordering = ["-create_date"]
-
-    def __str__(self):
-        return self.description
-
 
 class Departament(models.Model):
     description = models.CharField(max_length=200, verbose_name="Descripción", unique=True)

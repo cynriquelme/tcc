@@ -4,7 +4,6 @@ from .models import *
 class CrudAdmin(admin.ModelAdmin):
     readonly_fields = ('create_date', 'update_date')
 
-admin.site.register(TypeDocument, CrudAdmin)
 admin.site.register(City, CrudAdmin)
 admin.site.register(Country, CrudAdmin)
 admin.site.register(Sexe, CrudAdmin)
