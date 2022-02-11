@@ -5,133 +5,118 @@
 {% block background %}{% load static %}{% static 'core/img/lupa.jpg' %}{% endblock %}
 
 {% block headers %}
-
+    
 {% endblock %}
 
 {% load widget_tweaks %}
 
 {% block content %}
-    <div id="main">
+    <h3 {% if user.is_authenticated %}>Bienvenido/a {{ user.get_username }}{% endif %}</h3> 
+    <div id="container-fluid">
         <div class="row">
-            <div class="col">
-                <div class="card card-body">
-                    <form method="get">
-                        <div class="well">
-                            <h3 class="filter-title">Filtros</h3>
-                            <div class="row">
-                              <div class="form-group col-sm-4 col-md-3">
-                                {{ reports_filter.form.type_report.label_tag }}
-                                {% render_field reports_filter.form.type_report class="form-control" %}
-                              </div>
-                              <div class="form-group col-sm-4 col-md-3">
-                                {{ reports_filter.form.sub_category.label_tag }}
-                                {% render_field reports_filter.form.sub_category class="form-control" %}
-                              </div>
-                              <div class="form-group col-sm-5 col-md-4">
-                                {{ reports_filter.form.description.label_tag }}
-                                {% render_field reports_filter.form.description class="form-control" %}
-                              </div>
-                              <div class="form-group col-sm-4 col-md-3">
-                                {{ reports_filter.form.star_date.label_tag }}
-                                {% render_field reports_filter.form.star_date class="form-control" %}
-                              </div>
-                              <div class="form-group col-sm-4 col-md-3">
-                                {{ reports_filter.form.end_date.label_tag }}
-                                {% render_field reports_filter.form.end_date class="form-control" %}
-                              </div>
-                            </div>
-                            <button type="submit" class="btn btn-secondary">
-                              <span class="glyphicon glyphicon-search"></span> Filtrar
-                            </button>
-                          </div>
-                    </form>
-                </div>
-            </div>
+            <div class="col-lg-12">
+                <div id="container"></div>
+            </div>    
         </div>
-        <h1 class="title" style="text-align: center; margin-top: 5px;">Últimos Reportes</h1>
-        <div class="row"> 
-            {% for report in page_obj  %}
-              {% if report.status == True %}
-            <div class="card" style="width: 18rem; margin: 20px; margin-bottom: 10px;">
-                {% if report.image %}
-                    <img class="img-fluid" src="{{report.image.url}}" alt="Card image cap">
-                {% else %}
-                    <img class="img-fluid" src="{% static 'core/img/img-reporte.png' %}" alt="Card image cap">
-                {% endif %}
-                 
-                <div class="card-body">
-                  <h5 class="card-title">{{report.sub_category.category}}</h5>
-                  <p>{{report.description}}</p>
-                  <p><b>Publicado por:</b> {{report.user}}</p>
-                  <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#{{report.id}}-modal">
-                        Ver Reporte
-                    </button>
-                    
-                    <!-- Modal -->
-                    <div class="modal fade" id="{{report.id}}-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">{{report.sub_category.category}}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            </div>
-                            <div class="modal-body">
-                                <!--<img class="img-fluid" src="{% static 'core/img/img-reporte.png' %}">-->
-                                <p class="view-text text-capitalize"> <b>Tipo de Reporte:</b> {{report.type_report}}</p>
-                                <p class="view-text text-capitalize"> <b>SubCategoría:</b> {{report.sub_category}}</p>
-                                <p class="view-text text-capitalize"> <b>Fecha:</b> {{report.found_date}} <b>Hora:</b> {{report.found_time}}</p>
-                                <p class="view-text text-capitalize">{{report.description}}</p>
-                                <p class="img-center">
-                                {% if report.image %}
-                                    <img class="img-fluid" src="{{report.image.url}}" alt="Card image cap">
-                                {% else %}
-                                    <img class="img-fluid" src="{% static 'core/img/img-reporte.png' %}" alt="Card image cap">
-                                {% endif %}
-                                </p>
-                                
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <a class="btn btn-info" href="http://127.0.0.1:8000/accounts/profile/owner/{{report.user.id}}" role="button">Ver perfil del autor</a>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
+        <br>
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="container-pie"></div>
+            </div>    
         </div>
-        </div>
-         <div class="mt-3">
-            <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                    <li class="page-item">
-                        <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo;</a>
-                    </li>
-                {% else %}
-                    <li class="page-item disabled">
-                        <a href="#" class="page-link">&laquo;</a>
-                    </li>
-                {% endif %}
-                {% for page_obj in page_obj.paginator %}
-                    <li class="page-item {% if page_obj.number == page_obj %}active{% endif %}">
-                        <a href="?page={{ page_obj.number }}" class="page-link">{{ page_obj.number }}</a>
-                    </li>
-                {% endfor %}
-                {% if page_obj.has_next %}
-                    <li class="page-item">
-                        <a href="?page={{ page_obj.next_page_number }}" class="page-link">&raquo;</a>
-                    </li>
-                {% else %}
-                    <li class="page-item disabled">
-                        <a href="#" class="page-link">&raquo;</a>
-                    </li>
-                {% endif %}
-            </ul>
-        </div>
+        <br>
     </div>
+
+    
+<script type="text/javascript">
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Reportes del año actual por Tipo de Reporte'
+        },
+        xAxis: {
+            categories: [
+                'Enero',
+                'Febrero',
+                'Marzo',
+                'Abril',
+                'Mayo',
+                'Junio',
+                'Julio',
+                'Agosto',
+                'Septiembre',
+                'Octubre',
+                'Noviembre',
+                'Diciembre'
+            ],
+            crosshair: true
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Valores'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Encontrado',
+            data: {{ report_found_year_month|safe }}
+
+        }, {
+            name: 'Extraviado',
+            data: {{ report_lost_year_month|safe }}
+        }]
+    });
+
+    Highcharts.chart('container-pie', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Reportes del mes actual por Categoría'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{ 
+                name: 'Brands',
+                colorByPoint: true,
+                data: {{ report_for_category|safe }}
+        }]
+    });
+
+    </script>
 {% endblock %}

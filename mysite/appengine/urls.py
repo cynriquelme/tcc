@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from core import views as core_views
+from core.views import DashboardView, search
 from crud import views as crud_views
+from core import views as core_views
 from django.conf import settings
 from django.conf.urls.static import static
 from registers.urls import registers_patterns
@@ -25,7 +26,8 @@ from reports.urls import reports_patterns
 from django.conf import settings
 
 urlpatterns = [
-    path('', core_views.home, name="home"),
+    path('', DashboardView.as_view(), name="home"),
+    path('search/', core_views.search, name="search"),
     path('registers/', include(registers_patterns)),
     path('reports/', include(reports_patterns)),
     path('cities/', crud_views.list_cities, name='cities'),
