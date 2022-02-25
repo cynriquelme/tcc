@@ -1,24 +1,29 @@
 $(function(){
     if (navigator.geolocation)
-    {
-        navigator.geolocation.getCurrentPosition(getCoords, getError);
+    {    
+        if($('#id_latitude_update').val()!==undefined){
+            var latU =  $('#id_latitude_update').val();
+            var lngU = $('#id_length_update').val();  
+            initializeUpdate(latU, lngU);
+        }else{
+            navigator.geolocation.getCurrentPosition(getCoords, getError);
+        }
     }else{
-
+        alert("La ubicación no está activada..");
     }
 
     function getCoords(position)
-    {
+    {    
         var lat = position.coords.latitude;
         var lng = position.coords.longitude;
         $('#id_coord_latitude').val(lat);
         $('#id_coord_length').val(lng);
-        
-        initialize(lat, lng);
+        initialize(lat, lng);        
     }
 
     function getError(err)
     {
-        initialize(-25.3342, -57.5373);
+        initialize(-25.40, -57.30);
     }
 
     function initialize(lat, lng)
@@ -44,16 +49,36 @@ $(function(){
         });
     }
 
+    function initializeUpdate(latU, lngU)
+    {
+        var latlng = new google.maps.LatLng(latU,lngU);
+        var mapSettings = {
+            center: latlng,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        
+        map = new google.maps.Map($('#mapa').get(0), mapSettings);
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            draggable: true,
+            title: 'Arrastrame'
+        });
+
+        google.maps.event.addListener(marker, 'position_changed', function(){
+            getMarkerCoords(marker);
+        });
+    }
+
     function getMarkerCoords(marker)
     {
-        if ("{{ report.coord_latitude}}"== null) { 
-            $('#id_coord_latitude').val("{{ report.coord_latitude}}");
-            $('#id_coord_length').val("{{ report.coord_length}}");
-         } else { 
-            var markerCoords = marker.getPosition();
-            $('#id_coord_latitude').val(markerCoords.lat());
-            $('#id_coord_length').val(markerCoords.lng());
-         }
+        var markerCoords = marker.getPosition();
+        $('#id_coord_latitude').val(markerCoords.lat());
+        $('#id_coord_length').val(markerCoords.lng());
+        $('#id_latitude_update').val(markerCoords.lat());
+        $('#id_length_update').val(markerCoords.lng());    
     }
 
     $('#form_coords').submit(function(e){
