@@ -27,10 +27,20 @@
             {{form2.departament}}
             <p for="{{form2.city.id_for_label}}"><b>{{form2.city.label}}</b></p>
             {{form2.city}}
-            <p for="{{form2.direction.id_for_label}}"><b>{{form2.direction.label}}</b></label>
+            <p for="{{form2.direction.id_for_label}}"><b>{{form2.direction.label}}</b></p>
             {{form2.direction}}
-            <p for="{{form.username.id_for_label}}"><b>{{form.username.label}}</b></label>
-            {{form.as_p}}
+            <p for="{{form.username.id_for_label}}"><b>{{form.username.label}}</b></p>
+            {{form.username}}
+            {{form.username.errors}}
+            <p for="{{form.email.id_for_label}}"><b>Correo</b></p>
+            {{form.email}}
+            {{form.email.errors}}
+            <p for="{{form.password1.id_for_label}}"><b>Contraseña</b></p>
+            {{form.password1}}
+            {{form.password1.errors}}
+            <p for="{{form.password2.id_for_label}}"><b>Confirmar la contraseña</b></p>
+            {{form.password2}} 
+            {{form.password2.errors}}
             <p class="text-info">Para concluir el Registro de Usuario favor leer los Términos y Condiciones.</p>
             <input style="opacity:1;" type="checkbox" data-required="1" name="terminos" id="terminos"> 
             Aceptar los <a style="color:blue;" href="{% url 'terms' %}">Términos y Condiciones</a><br><br>

@@ -9,10 +9,8 @@ from django.db import models
 class Report(models.Model):
     day  = timezone.now()
     hour = timezone.now()
-    #formatedHour = hour.strftime("%Y/%m/%d %H:%M:%S")
     formatedDay  = day.strftime("%Y-%m-%d")
     formatedHour = hour.strftime("%H:%M")
-    
     description = models.CharField(max_length=600, verbose_name="Descripción", unique=True)
     found_date = models.DateField(verbose_name="Fecha", default=formatedDay)
     found_time = models.TimeField(verbose_name="Hora", default=formatedHour)

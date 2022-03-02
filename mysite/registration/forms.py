@@ -13,10 +13,29 @@ class TimeInput (forms.TimeInput):
     input_type = 'time'
 
 class UserCreationFormWithEmail(UserCreationForm):
-    email = forms.EmailField(required=True, help_text="Requerido. 254 carácteres como máximo y debe ser válido.")
+    email = forms.EmailField(required=True)
+    password1 = forms.CharField(label='password', widget=forms.PasswordInput)  
+    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)  
     class Meta:
         model = User
         fields = ("username", "email", "password1", "password2")
+        help_texts = {
+            'username': None,
+            'email': None,
+            'password1': None,
+            'password2': None,
+        }
+    
+    def __init__(self, *args, **kwargs):
+      super().__init__(*args, **kwargs)
+      self.fields['password1'].help_text=''
+      self.fields['password2'].help_text=''
+      self.fields['username'].widget.attrs.update({'placeholder': 'Nombre de Usuario'})
+      self.fields['email'].widget.attrs.update({'placeholder': 'Correo'})
+      self.fields['password1'].widget.attrs.update({'placeholder': 'Contraseña'})
+      self.fields['password2'].widget.attrs.update({'placeholder': 'Confirmar la contraseña'})
+      for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'form-control mb-2'
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -25,7 +44,7 @@ class UserCreationFormWithEmail(UserCreationForm):
         return email
 
 class EmailForm(forms.ModelForm):
-    email = forms.EmailField(required=True, help_text="Requerido. 254 carácteres como máximo y debe ser válido.")
+    email = forms.EmailField(required=True)
 
     class Meta:
         model = User
