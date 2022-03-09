@@ -69,8 +69,6 @@ class RegisterDelete(DeleteView):
     model = Register
     success_url = reverse_lazy('registers:registers')
 
-def index(request):
-    return HttpResponse('ok')
     
 def scanner_qr(request):
     if request.method == 'POST':
@@ -78,7 +76,6 @@ def scanner_qr(request):
         if formulario.is_valid():
             ruta_qr = request.FILES.get('qr_code')
             d = decode(Image.open(ruta_qr))
-            print("The total number of elements in the list: ", len(d))
             if (len(d)>0):
                 read_qr = d[0].data.decode("ascii")
                 result = ""
