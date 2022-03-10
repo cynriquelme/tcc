@@ -16,9 +16,7 @@
       <div class="col-md-9 mx-auto">
         <div>
           {% if 'ok' in request.GET %}
-            <p style="color:green;"> Se ha actualizado correctamente.
-            <a href="{% url 'registers:register' register.id register.description|slugify %}"> Haz clic aqui para ver el resultado. </a>
-            </p>
+            <p style="color:green;"> Se ha actualizado correctamente.</p>
           {% endif %}
             
           <form action="" method="post">{% csrf_token %}
