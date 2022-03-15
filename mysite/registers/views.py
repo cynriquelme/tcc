@@ -12,7 +12,6 @@ from django.urls import reverse, reverse_lazy
 from django import forms
 from six import BytesIO
 from .forms import QrForm, RegisterForm
-import cv2
 from pyzbar.pyzbar import decode
 from PIL import Image
 from flask import Flask, render_template, request
