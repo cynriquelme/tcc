@@ -151,5 +151,8 @@ if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = os.path.join(BASE_DIR,"sent_emails")
 else:
-    # Aqui hay que configurar un email real para producción
-    pass
+    EMAIL_HOST = 'smtp.googlemail.com'
+    EMAIL_PORT = 587
+    EMAIL_HOST_USER = 'atopatcc@gmail.com'
+    EMAIL_HOST_PASSWORD = 'tcc71774842/'
+    EMAIL_USE_TLS = True
