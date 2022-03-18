@@ -60,8 +60,11 @@
                 {% endif %}
                  
                 <div class="card-body">
-                  <h5 class="card-title">{{report.sub_category.category}}</h5>
+                  <h5 class="card-title">{{report.sub_category}}</h5>
                   <p>{{report.description}}</p>
+                  {% if report.reward %}
+                  <p><b>Recompensa:</b> {{report.reward}}</p>
+                  {% endif%}
                   <p><b>Publicado por:</b> {{report.user}}</p>
                   <!-- Button trigger modal -->
                     <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#{{report.id}}-modal">
@@ -81,7 +84,6 @@
                             <div class="modal-body">
                                 <!--<img class="img-fluid" src="{% static 'core/img/img-reporte.png' %}">-->
                                 <p class="view-text text-capitalize"> <b>Tipo de Reporte:</b> {{report.type_report}}</p>
-                                <p class="view-text text-capitalize"> <b>SubCategoría:</b> {{report.sub_category}}</p>
                                 <p class="view-text text-capitalize"> <b>Fecha:</b> {{report.found_date}} <b>Hora:</b> {{report.found_time}}</p>
                                 <p class="view-text text-capitalize">{{report.description}}</p>
                                 <p class="img-center">
@@ -95,7 +97,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <a class="btn btn-info" href="http://127.0.0.1:8000/accounts/profile/owner/{{report.user.id}}" role="button">Ver perfil del autor</a>
+                                <a class="btn btn-info" href="http://127.0.0.1:8000/accounts/profile/owner/{{report.user.id}}" role="button">Ver información del autor</a>
                             </div>
                         </div>
                         </div>

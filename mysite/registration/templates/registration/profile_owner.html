@@ -8,35 +8,25 @@
     <div class="row mt-3">
       <div class="col-md-9 mx-auto mb-5">
         <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-          <div class="row">
-            <!-- Formulario -->
-              <div class="col-md-10">
-                <h2 align="center">Información del Propietario</h2>
-                {% if profile.avatar %}
-                    <center><img src="{{profile.avatar.url}}" class="img-fluid"></center>
-                {% else %}
-                    <center><img src="{% static 'registration/img/no-avatar.png' %}" class="img-fluid"></center>
-                {% endif %}
-                <p class="mb-1 mt-2"><b>Nombres:</b></p>
-                <input type="text" value="{{profile.person.name}}" class="form-control mt-3" readonly placeholder="Nombres">
-                <p class="mb-1 mt-2"><b>Apellidos:</b></p>
-                <input type="text" value="{{profile.person.last_name}}" class="form-control mt-3" readonly placeholder="Apellidos">
-                <p class="mb-1 mt-2"><b>Fecha de Nacimiento:</b></p>
-                <input type="text" value="{{profile.person.birthday}}" class="form-control mt-3" readonly placeholder="Teléfono">
-                <p class="mb-1 mt-2"><b>Teléfono:</b></p>
-                <input type="text" value="{{profile.person.phone}}" class="form-control mt-3" readonly placeholder="Teléfono">
-                <p class="mb-1 mt-2"><b>Sexo:</b></p>
-                <input type="text" value="{{profile.person.sexe.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
-                <p class="mb-1 mt-2"><b>País:</b></p>
-                <input type="text" value="{{profile.person.country.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
-                <p class="mb-1 mt-2"><b>Departamento:</b></p>
-                <input type="text" value="{{profile.person.departament.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
-                <p class="mb-1 mt-2"><b>Ciudad:</b></p>
-                <input type="text" value="{{profile.person.city.description}}" class="form-control mt-3" readonly placeholder="Teléfono">
-                <p class="mb-1 mt-2"><b>Dirección:</b></p>
-                <input type="text" value="{{profile.person.direction}}" class="form-control mt-3" readonly placeholder="Teléfono">
-                <p class="mb-1 mt-2"><b>Correo:</b></p>
-                <input type="text" value="{{profile.user.email}}" class="form-control mt-3" readonly placeholder="Correo">
+          <!-- Formulario -->
+            <h2 align="center" class="mb-2 mt-2">Información del Propietario</h2>
+              <div class="container-fluid">    
+                <div class="row">
+                  <div class="col-sm-3">
+                    {% if profile.avatar %}
+                      <img src="{{profile.avatar.url}}" class="img-fluid">
+                    {% else %}
+                      <img src="{% static 'registration/img/no-avatar.png' %}" class="img-fluid">
+                    {% endif %}
+                  </div>
+                  <div class="col-sm-6">
+                    <p class="mb-1 mt-2"><i class="fa fa-fw fa-user"></i><b> Nombre</b></p>
+                    <input type="text" value="{{profile.person.name}} {{profile.person.last_name}} " class="form-control mt-3" readonly placeholder="Nombres">
+                    <p class="mb-1 mt-2"><i class="fa fa-fw fa-phone"></i><b> Teléfono</b></p>
+                    <input type="text" value="{{profile.person.phone}}" class="form-control mt-3" readonly placeholder="Teléfono">
+                    <p class="mb-1 mt-2"><i class="fa fa-fw fa-envelope"></i><b> Correo</b></p>
+                    <input type="text" value="{{profile.user.email}}" class="form-control mt-3" readonly placeholder="Correo">
+                  </div>
               </div>
           </div>
         </form>

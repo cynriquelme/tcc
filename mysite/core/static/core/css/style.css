@@ -19,7 +19,7 @@ body{
 .capas{
     border: 1px solid #000;
     display: inline-block;
-    width: 600px;
+    width: 100%;
     vertical-align: top;
     height: 500px;
     text-align: center;
@@ -55,7 +55,7 @@ nav.li.nav-item{
 }
 
 h5.card-title{
-    background-color: #5093db;
+    background-color: #629fe0;
     color: white;
     text-align: center;
 }

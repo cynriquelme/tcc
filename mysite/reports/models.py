@@ -5,6 +5,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from crud.models import TypeReport, SubCategory
 from django.db import models
+from encrypted_model_fields.fields import EncryptedCharField
 
 class Report(models.Model):
     day  = timezone.now()
@@ -18,6 +19,7 @@ class Report(models.Model):
     status = models.BooleanField(verbose_name="Activo", default=True, help_text="Indica si el registro está Activo o Inactivo.")
     type_report = models.ForeignKey(TypeReport, on_delete=models.CASCADE, default=0, verbose_name="Tipo de Reporte")
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default=0, verbose_name="Sub Categoría")
+    reward = EncryptedCharField(max_length=100, verbose_name="Recompensa", blank=True)
     coord_latitude = models.CharField(verbose_name="Coordenada Latitud", max_length=50)
     coord_length = models.CharField(verbose_name="Coordenada Longitud",max_length=50)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Usuario")

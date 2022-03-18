@@ -14,21 +14,34 @@
   <div class="container">
     <div class="row mt-3 mb-3">
       <div class="col-md-9 mx-auto">
-        <div>
-            <form method="post" enctype="multipart/form-data">{% csrf_token %}
-                <table>
-                    {{ form.as_table }}
-
-                </table>
-                <div id="mapa" class="capas">
-                     
-                </div>
-                <br>
-                <div class="text-center">
-                    <input type="submit" class="btn btn-primary btn-block" value="Crear Reporte" />
-                </div>
-            </form>
-        </div>
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+          <p for="{{form.type_report.id_for_label}}"><b>{{form.type_report.label}}</b></p>
+          {{form.type_report}}
+          <p for="{{form.sub_category.id_for_label}}"><b>{{form.sub_category.label}}</b></p>
+          {{form.sub_category}}
+          <p for="{{form.description.id_for_label}}"><b>{{form.description.label}}</b></p>
+          {{form.description}}
+          <p for="{{form.found_date.id_for_label}}"><b>{{form.found_date.label}}</b></p>
+          {{form.found_date}}
+          <p for="{{form.found_time.id_for_label}}"><b>{{form.found_time.label}}</b></p>
+          {{form.found_time}}
+          <p for="{{form.image.id_for_label}}"><b>{{form.image.label}}</b></p>
+          {{form.image}}   
+          <br><input style="opacity:1;" type="checkbox" data-required="1" name="reward" id="reward" class="mb-3 mt-4"> <i>Desea realizar una recompensa?</i><br>  
+          <p for="{{form.reward.id_for_label}}" id="tr_reward" style="display:none;"><b>{{form.reward.label}}</b> {{form.reward}}</p><br>
+          <p for="{{form.coord_latitude.id_for_label}}"><b>{{form.coord_latitude.label}}</b></p>
+          {{form.coord_latitude}}
+          <p for="{{form.coord_length.id_for_label}}"><b>{{form.coord_length.label}}</b></p>
+          {{form.coord_length}}
+          <label for="{{form.status.id_for_label}}"><b>{{form.status.label}}</b></label>
+          {{form.status}} {{form.status.help_text}}
+          <div id="mapa" class="capas">
+          </div>
+          <br>
+          <div class="text-center">
+            <input type="submit" class="btn btn-primary btn-block" value="Crear Reporte" />
+          </div>
+        </form>
       </div>
     </div>
   </div>

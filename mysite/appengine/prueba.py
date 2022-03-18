@@ -1,3 +1,5 @@
-import psycopg2
-conn = psycopg2.connect(user="postgres", password="postgres", database="proyecto_tcc", host="127.0.0.1", port="5432")
-print("Successfully connected!")
+import os
+import base64
+
+new_key = base64.urlsafe_b64encode(os.urandom(32))
+print(new_key)

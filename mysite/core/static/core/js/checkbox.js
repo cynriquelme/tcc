@@ -8,3 +8,22 @@ $(document).ready(function () {
         }
     });
 });
+function mostrar(){
+    document.getElementById('tr_reward').style.display = 'contents';
+}
+    
+function ocultar(){
+    document.getElementById('tr_reward').style.display = 'none';
+}
+
+$(document).ready(function () {
+    $('#reward').on('checkbox change', function () {
+        if (this.checked) {
+            mostrar();
+        }
+        else {
+            ocultar();
+        }
+    });
+});
+

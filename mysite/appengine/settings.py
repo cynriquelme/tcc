@@ -14,6 +14,7 @@ from pathlib import Path
 import django_google_maps
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,6 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+FIELD_ENCRYPTION_KEY = '6-QgONW6TUl5rt4Xq8u-wBwPcb15sIYS2CN6d69zueM='
 
 # Application definition
 
@@ -46,6 +48,7 @@ INSTALLED_APPS = [
     'reports.apps.ReportsConfig',
     'django_filters',
     'widget_tweaks',
+    'encrypted_model_fields',
 ]
 
 MIDDLEWARE = [
