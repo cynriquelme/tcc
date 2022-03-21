@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from crud.models import *
 from django.contrib.auth.models import User
-from .models import Profile, Person
+from .models import Notification, Profile, Person
 from django.forms import fields, models, widgets
 
 class DateInput (forms.DateInput):
@@ -73,6 +73,14 @@ class PersonForm(forms.ModelForm):
             'direction': forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Ingrese su Dirección'}),
         }
 
+class NotificationForm(forms.ModelForm):
+    class Meta:
+        model = Notification
+        fields = ['transmitter', 'message']
+        widgets = {
+            'transmitter': forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Nombre y Apellido'}),
+            'message': forms.Textarea(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Mensaje'}),
+        }
 
 class ProfileForm(forms.ModelForm):
     class Meta:

@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 {% load static %}
-{% block title %}Propietario{% endblock %}
+{% block title %}Autor{% endblock %}
 {% block content %}
 <style>.errorlist{color:red;} label{display:none}</style>
 <main role="main">
@@ -9,7 +9,7 @@
       <div class="col-md-9 mx-auto mb-5">
         <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
           <!-- Formulario -->
-            <h2 align="center" class="mb-2 mt-2">Información del Propietario</h2>
+            <h2 align="center" class="mb-2 mt-2">Información del Autor</h2>
               <div class="container-fluid">    
                 <div class="row">
                   <div class="col-sm-3">
@@ -28,17 +28,6 @@
                     <input type="text" value="{{profile.user.email}}" class="form-control mt-3" readonly placeholder="Correo">
                   </div>
               </div>
-          </div>
-          <div class="col-md-12 mx-auto mb-3">
-            <br><p class="alert alert-secondary"> Si desea ponerse en contacto con el propietario complete el formulario.</p>
-            {% if 'success' in request.GET %}
-              <div class="alert alert-success mb-2 mt-3" role="alert">
-                <a class="close" data-dismiss="alert"> × </a> 
-                Notificación enviada con éxito al propietario.
-              </div>  
-            {% endif %}
-            {{form.as_p}}
-            <input type="submit" class="btn btn-primary" value="Enviar"><br>
           </div>
         </form>
       </div>

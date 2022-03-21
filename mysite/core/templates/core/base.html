@@ -70,6 +70,9 @@
                   <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-fw fa-user"></i> Perfil</a>
               </li>
               <li class="nav-item">
+                  <a class="nav-link" href="{% url 'notification' %}">{% if count_notification != 0 %}<span class="notification">{{ count_notification }}</span>{% endif %}<i class="fa fa-fw fa-bell"></i> Notificaciones</a>
+              </li>
+              <li class="nav-item">
                   <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-fw fa-sign-out"></i> Salir</a>
               </li>
             {% endif %}
@@ -120,7 +123,7 @@
                 </a>
               </li>
             </ul>
-            <p>Desarrollado por Cynthia & Roberto &copy; 2021 </p>
+            <p>Desarrollado por Cynthia & Roberto &copy; 2022 </p>
           </div>
       </div>
     </footer>

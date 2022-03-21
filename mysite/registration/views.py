@@ -1,17 +1,21 @@
+from email import message
 from re import template
 from django.contrib.auth.models import User
+from django.dispatch import receiver
 from django.utils import decorators
 from django.views.generic.base import TemplateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from .forms import UserCreationFormWithEmail, ProfileForm, EmailForm, PersonForm
+from .forms import UserCreationFormWithEmail, ProfileForm, EmailForm, PersonForm, NotificationForm
 from django.views.generic import CreateView
 from django.views.generic.edit import UpdateView
+from django.views.generic.list import ListView
 from django.urls import reverse_lazy
 from django import forms
-from .models import Profile, Person
+from .models import Notification, Profile, Person
 from django.shortcuts import redirect, render, HttpResponse
 from django.http import Http404, HttpResponseRedirect
+from django.db.models import Count
 
 
 # Create your views here.
@@ -84,14 +88,57 @@ class EmailUpdate(UpdateView):
 def terms_v(request):
     return render(request,'registration/terms.html')
 
+def profile_author(request,user):
+    try:
+        profile=Profile.objects.get(user=user)
+    except Profile.DoesNotExist:
+        return HttpResponse('El Propietario Ingresado no existe. ')
+
+    return render(
+        request,
+        'registration/profile_author.html',
+        context={'profile':profile}
+    )
+
 def profile_owner_v(request,user):
     try:
         profile=Profile.objects.get(user=user)
     except Profile.DoesNotExist:
         return HttpResponse('El Propietario Ingresado no existe. ')
-    
+    if request.method == "POST":
+        form = NotificationForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.receiver = profile.user
+            post.save()
+            print("entro notification")
+            return HttpResponseRedirect('' + '?success') 
+    else:
+        form = NotificationForm()
+        print("entro notification 2")
+
     return render(
         request,
         'registration/profile_owner.html',
-        context={'profile':profile}
+        context={'profile':profile, 'form': form}
     )
+
+class NotificationListView(ListView):
+    template_name= 'registration/notification_list.html'
+    paginate_by = 15
+    
+    def get_queryset(self, *args, **kwargs):
+        return Notification.objects.filter(receiver=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['message'] = 'Lista de Notificationes'
+        return context
+
+class NotificationUpdate(UpdateView):
+    model = Notification
+    fields = ['read']
+    template_name_suffix = '_update_form'
+
+    def get_success_url(self) -> str:
+        return reverse_lazy('notification') + '?ok'

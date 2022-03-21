@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from crud.models import Sexe, City, Departament, Country
+from django.conf import settings
 
 def custom_uploap_to(instance, filename):
     old_instance = Profile.objects.get(pk=instance.pk)
@@ -34,3 +35,10 @@ def ensure_profile_exits(sender, instance, **kwargs):
         person_id = Person.objects.latest('id')
         Profile.objects.get_or_create(user=instance, person=person_id)
         print("Se acaba de crear un usuario y su perfil enlazado")
+
+class Notification(models.Model):
+    message = models.TextField(verbose_name="Mensaje")
+    transmitter = models.CharField(max_length=200, verbose_name="Emisor")
+    receiver = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Receptor")
+    read = models.BooleanField(verbose_name="Leído", default=False, help_text="Indica si el mensaje ha sido leído o no.")
+    create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")

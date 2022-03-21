@@ -146,3 +146,11 @@ ul.filter-option li:hover ul {
 p.img-center {
     text-align: center;
 }
+
+.notification {
+    background-color: #e41a1a;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 18px;
+    padding: 4px;
+}

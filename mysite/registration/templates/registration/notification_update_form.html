@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Actualizar Notificación{% endblock %}
+{% block background %}{% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
+{% block headers %}
+    <h1 style="text-align: center;">Notificación</h1>
+{% endblock %}
+{% block content %}
+<div class="col-11 text-right">
+  <a href="{% url 'notification' %}"><button type="button" class="btn btn-primary" ><i class="fa fa-fw fa-angle-double-left "></i> Regresar</button></a>
+</div>
+<main role="main">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto">
+        <div>
+          {% if 'ok' in request.GET %}
+            <p style="color:green;"> Se ha actualizado correctamente.</p>
+          {% endif %}
+            
+          <form action="" method="post">{% csrf_token %}
+            <p class="mb-1 mt-2">De</p>
+            <input type="text" value="{{notification.transmitter}}" class="form-control mt-3" readonly placeholder="Emisor">
+            <p class="mb-1 mt-2">Mensaje</p>
+            <input type="text" value="{{notification.message}}" class="form-control mt-3" readonly placeholder="Mensaje">
+            <br>{{form.as_p}}
+            <input type="submit" class="btn btn-primary btn-block" value="Actualizar"/><br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

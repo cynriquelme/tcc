@@ -3,15 +3,15 @@
 {% block title %}Crear Registro{% endblock %}
 
 {% block headers %}
-  <h1 style="text-align: center;">Registros</h1>
+  <h2 style="text-align: center;">Registros</h2>
 {% endblock %}
 {% block content %}
 {% comment %} {% include 'registers/includes/register_menu.html'%} {% endcomment %}
-<div class="col-11 text-right">
-  <a href="{% url 'registers:registers' %}"><button type="button" class="btn btn-primary" ><i class="fa fa-fw fa-angle-double-left "></i> Regresar</button></a>
-</div>
 <main role="main">
   <div class="container">
+    <div class="col-md-10 mx-auto text-right">
+      <a href="{% url 'registers:registers' %}"><button type="button" class="btn btn-primary" ><i class="fa fa-fw fa-angle-double-left "></i> Regresar</button></a>
+    </div>
     <div class="row mt-3 mb-3">
       <div class="col-md-9 mx-auto">
         <div>

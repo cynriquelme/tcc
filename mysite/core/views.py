@@ -1,9 +1,11 @@
 from calendar import month
+from re import template
 from django.shortcuts import render, HttpResponse
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
 from django.template import loader
 from reports.models import Report
+from registration.models import Notification
 from crud.models import Category, SubCategory
 from django.core.paginator import Paginator
 from django.shortcuts import render
@@ -16,7 +18,6 @@ import json
 
 class DashboardView(TemplateView):
     template_name = 'core/home.html'
-
     def get_report_found_year_month(self):
         data = []
         try:
@@ -52,7 +53,7 @@ class DashboardView(TemplateView):
                 })
         except:
             pass
-        return data
+        return data   
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -61,6 +62,13 @@ class DashboardView(TemplateView):
         context['report_lost_year_month'] = self.get_report_lost_year_month
         context['report_for_category'] = self.get_report_for_category
         return context
+
+def extra_context(request):
+    if request.user.is_authenticated:
+        count_notification = Notification.objects.filter(receiver=request.user,read=False).count()
+    else:
+        count_notification = None
+    return {'count_notification': count_notification }
 
 def search(request):
     reports = Report.objects.all()
@@ -76,4 +84,5 @@ def search(request):
 
     return render(request, template,{"reports":reports, "categories":categories, "sub_categories":sub_categories,"reports_count":reports_count, "reports_filter":reports_filter, 
     "request":request, 'page_obj': page_obj})
+
 
