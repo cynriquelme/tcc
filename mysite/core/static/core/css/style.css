@@ -28,6 +28,18 @@ body{
     padding: 5px;
 }
 
+.capas_search{
+    border: 1px solid #000;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    height: 300px;
+    text-align: center;
+    margin-top: 3px;
+    margin-bottom: 2px;
+    padding: 5px;
+}
+
 footer{
     background-color: rgb(240 240 240);
     text-align: center;
