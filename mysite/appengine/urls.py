@@ -28,6 +28,7 @@ from django.conf import settings
 urlpatterns = [
     path('', DashboardView.as_view(), name="home"),
     path('search/', core_views.search, name="search"),
+    path('location/<int:id>/', core_views.location, name="location"),
     path('registers/', include(registers_patterns)),
     path('reports/', include(reports_patterns)),
     path('cities/', crud_views.list_cities, name='cities'),

@@ -85,4 +85,9 @@ def search(request):
     return render(request, template,{"reports":reports, "categories":categories, "sub_categories":sub_categories,"reports_count":reports_count, "reports_filter":reports_filter, 
     "request":request, 'page_obj': page_obj})
 
+def location(request, id):
+    template = "core/report_location.html"
+    location = Report.objects.filter(id=id)
+
+    return render(request, template,{"location":location})
 

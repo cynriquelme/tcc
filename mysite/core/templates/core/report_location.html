@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Ubicación del Reporte{% endblock %}
+{% block background %}{% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
+{% block headers %}
+    <h1 style="text-align: center;">Ubicación del Reporte </h1>
+{% endblock %}
+{% block content %}
+<main role="main">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto">
+        <div>
+          <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            <div>
+              {% for report in location %}
+                <p id="location_lat" style="display: none;">{{report.coord_latitude}}</p>
+                <p id="location_len" style="display: none;">{{report.coord_length}}</p>
+              {% endfor %}
+            </div>
+            <div id="map" class="capas_location">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}
