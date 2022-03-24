@@ -86,6 +86,9 @@
                                 <p class="view-text text-capitalize"> <b>Tipo de Reporte:</b> {{report.type_report}}</p>
                                 <p class="view-text text-capitalize"> <b>Fecha:</b> {{report.found_date}} <b>Hora:</b> {{report.found_time}}</p>
                                 <p class="view-text text-capitalize">{{report.description}}</p>
+                                {% if report.reward %}
+                                <p class="view-text text-capitalize"><b>Recompensa:</b> {{report.reward}}</p>
+                                {% endif%}
                                 <p class="img-center">
                                 {% if report.image %}
                                     <img class="img-fluid" src="{{report.image.url}}" alt="Card image cap">
