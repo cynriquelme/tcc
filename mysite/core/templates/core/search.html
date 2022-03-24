@@ -83,11 +83,11 @@
                             </div>
                             <div class="modal-body">
                                 <!--<img class="img-fluid" src="{% static 'core/img/img-reporte.png' %}">-->
-                                <p class="view-text text-capitalize"> <b>Tipo de Reporte:</b> {{report.type_report}}</p>
-                                <p class="view-text text-capitalize"> <b>Fecha:</b> {{report.found_date}} <b>Hora:</b> {{report.found_time}}</p>
-                                <p class="view-text text-capitalize">{{report.description}}</p>
+                                <p class="view-text"> <b>Tipo de Reporte:</b> {{report.type_report}}</p>
+                                <p class="view-text"> <b>Fecha:</b> {{report.found_date}} <b>Hora:</b> {{report.found_time}}</p>
+                                <p class="view-text">{{report.description}}</p>
                                 {% if report.reward %}
-                                <p class="view-text text-capitalize"><b>Recompensa:</b> {{report.reward}}</p>
+                                <p class="view-text"><b>Recompensa:</b> {{report.reward}}</p>
                                 {% endif%}
                                 <p class="img-center">
                                 {% if report.image %}
