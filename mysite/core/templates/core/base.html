@@ -42,34 +42,34 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class= "navbar-nav ml-auto">
         {% if user.is_authenticated %}
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/' %} active {% endif %}">
             <a class="nav-link" href="{% url 'home' %}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a><span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item  {% if request.path == '/search/' %} active {% endif %}">
             <a class="nav-link" href="{% url 'search' %}"><i class="fa fa-fw fa-search"></i> Búsquedas</a></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/registers/scanner_qr/' %} active {% endif %}">
             <a class="nav-link" href="{% url 'registers:scanner_qr' %}"><i class="fa fa-qrcode"></i> Escanear QR</a></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/registers/' %} active {% endif %}">
             <a class="nav-link" href="{% url 'registers:registers' %}"><i class="fa fa-fw fa-qrcode"></i> Registros</a></a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item {% if request.path == '/reports/' %} active {% endif %}">
             <a class="nav-link" href="{% url 'reports:reports' %}"><i class="fa fa-fw fa-folder"></i> Reportes</a></a>
           </li>
           {% endif %}
             {% if not request.user.is_authenticated %}
-              <li class="nav-item">
+              <li class="nav-item {% if request.path == '/accounts/login/' %} active {% endif %}">
                 <a class="nav-link" href="{% url 'login' %}"><i class="fa fa-fw fa-user"></i> Acceder</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item {% if request.path == '/accounts/signup/' %} active {% endif %}">
                 <a class="nav-link" href="{% url 'signup' %}"><i class="fa fa-fw fa-sign-in"></i> Registrarse</a>
               </li>
             {% else %}
-              <li class="nav-item">
+              <li class="nav-item {% if request.path == '/accounts/profile/' %} active {% endif %}">
                   <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-fw fa-user"></i> Perfil</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item {% if request.path == '/accounts/notification/' %} active {% endif %}">
                   <a class="nav-link" href="{% url 'notification' %}">{% if count_notification != 0 %}<span class="notification">{{ count_notification }}</span>{% endif %}<i class="fa fa-fw fa-bell"></i> Notificaciones</a>
               </li>
               <li class="nav-item">
