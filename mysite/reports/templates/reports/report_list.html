@@ -3,7 +3,7 @@
 {% block title %}Reportes{% endblock %}
 {% block background %}{% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
 {% block headers %}
-    <h1 style="text-align: center;">Reportes</h1>
+    <h1 style="text-align: center;">Mascotas y objetos reportados</h1>
 {% endblock %}
 {% block content %}
 <main role="main">
@@ -22,6 +22,7 @@
             <th scope="col">Imagen</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
+            <th scope="col">Registrado</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +41,7 @@
             <td>{% if report.image %}<img src="{{ report.image.url }}" class="img-fluid">{% endif %}</td>
             <td><a href="{% url 'reports:update' report.id %}"><button type="button" class="btn btn-secondary">Editar <i class="fa fa-fw fa-edit"></i></button></a></td>
             <td><a href="{% url 'reports:delete' report.id %}"><button type="button" class="btn btn-danger">Eliminar<i class="fa fa-fw fa-trash"></i></button></a></td>  
+            <td>{% if report.register %}Si{% else %}No{% endif %}</td>
           </tr>
           {% endif %}
           {% endfor %}

@@ -1,9 +1,9 @@
 {% extends 'core/base.html' %}
 {% load static %}
-{% block title %}Borrar Registro{% endblock %}
+{% block title %}Eliminar Registro{% endblock %}
 {% block background %}{% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
 {% block headers %}
-    <h1 style="text-align: center;">Registros</h1>
+    <h1 style="text-align: center;">Registro</h1>
 {% endblock %}
 {% block content %}
 {% comment %} {% include 'registers/includes/register_menu.html'%} {% endcomment %}
@@ -16,8 +16,8 @@
       <div class="col-md-9 mx-auto">
         <div>
             <form action="" method="post">{% csrf_token %}
-                <p>¿Estás seguro de que quieres borrar "{{ object }}"?</p>
-                <input type="submit" class="btn btn-primary btn-block" value="Sí, borrar el Registro" />
+                <p>¿Está seguro de que desea eliminar "{{ object }}"?</p>
+                <input type="submit" class="btn btn-primary btn-block mb-2 mt-2" value="Sí, eliminar el Registro" />
             </form>
         </div>
       </div>

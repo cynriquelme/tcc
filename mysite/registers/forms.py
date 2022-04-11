@@ -8,7 +8,7 @@ from django.contrib.admin import widgets
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Register
-        fields = ['sub_category','description', 'status']
+        fields = ['sub_category','description']
         widgets = {
             'description': forms.TextInput(attrs={'class':'form-control mb-2 mt-3', 'placeholder':'Ingrese una descripción'}),
             'sub_category': forms.Select(attrs={'class':'form-control mb-2 mt-3'}),

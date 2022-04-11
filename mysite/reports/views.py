@@ -1,6 +1,6 @@
 import django
 from django.http import request
-from .models import Report
+from .models import Report, Register
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, DeleteView
@@ -43,6 +43,7 @@ def report_new(request):
         form = ReportForm()
         print("entro 2")
     return render(request, 'reports/report_form.html', {'form': form})
+
 
 class ReportUpdate(UpdateView):
     model = Report

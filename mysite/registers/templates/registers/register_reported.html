@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Reportar{% endblock %}
+{% block background %}{% load static %}{% static 'core/img/home-bg.jpg' %}{% endblock %}
+{% block headers %}
+    <h1 style="text-align: center;">Reportar</h1>
+{% endblock %}
+{% block content %}
+{% comment %} {% include 'registers/includes/register_menu.html'%} {% endcomment %}
+<div class="col-11 text-right">
+  <a href="{% url 'registers:registers' %}"><button type="button" class="btn btn-primary" ><i class="fa fa-fw fa-angle-double-left "></i> Regresar</button></a>
+</div>
+<main role="main">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-9 mx-auto">
+        <div>
+          <form action="" method="post" enctype="multipart/form-data">{% csrf_token %} 
+                <p>{{result}}</p>
+                {% for register in register%}
+                <p for="{{form.type_report.id_for_label}}"><b>{{form.type_report.label}}</b></p>
+                {{form.type_report.errors}}
+                <select name="type_report" class="form-control mb-2 mt-3" id="id_type_report">
+                  <option value="2">Extraviado</option>
+                </select>
+                <p for="{{form.sub_category.id_for_label}}"><b>{{form.sub_category.label}}</b></p>
+                {{form.sub_category.errors}}
+                <select name="sub_category" class="form-control mb-2 mt-3" id="id_sub_category">
+                  <option value="{{register.sub_category.id}}">{{register.sub_category}}</option>
+                </select>
+                <p for="{{form.description.id_for_label}}"><b>{{form.description.label}}</b></p>
+                {{form.description.errors}}
+                <input id="description" type="text" name="description" class="form-control" value="{{ register.description }}">
+                <p for="{{form.found_date.id_for_label}}"><b>{{form.found_date.label}}</b></p>
+                {{form.found_date.errors}}
+                {{form.found_date}}
+                <p for="{{form.found_time.id_for_label}}"><b>{{form.found_time.label}}</b></p>
+                {{form.found_time.errors}}
+                {{form.found_time}}
+                <p for="{{form.image.id_for_label}}"><b>{{form.image.label}}</b></p>
+                {{form.image.errors}}
+                {{form.image}}   
+                <br><input style="opacity:1;" type="checkbox" data-required="1" name="reward" id="reward" class="mb-3 mt-4"> <i>Desea realizar una recompensa?</i><br>  
+                <p for="{{form.reward.id_for_label}}" id="tr_reward" style="display:none;"><b>{{form.reward.label}}</b> {{form.reward}}</p><br>
+                <p for="{{form.coord_latitude.id_for_label}}"><b>{{form.coord_latitude.label}}</b></p>
+                {{form.coord_latitude.errors}}
+                {{form.coord_latitude}}
+                <p for="{{form.coord_length.id_for_label}}"><b>{{form.coord_length.label}}</b></p>
+                {{form.coord_length.errors}}
+                {{form.coord_length}}
+                <label for="{{form.status.id_for_label}}"><b>{{form.status.label}}</b></label></p>
+                {{form.status.errors}}
+                {{form.status}} {{form.status.help_text}}
+                <input type="text" name="register" class="form-control mb-2 mt-2" maxlength="50" id="id_register" value="{{ register.id }}" style="display: none;">
+                {% endfor %}
+            <br>
+            
+            <div id="mapa" class="capas">
+            </div>
+            <input type="submit" class="btn btn-primary btn-block mb-2 mt-3" value="Reportar" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

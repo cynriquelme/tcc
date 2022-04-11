@@ -15,6 +15,7 @@ from .forms import QrForm, RegisterForm
 from pyzbar.pyzbar import decode
 from PIL import Image
 from flask import Flask, render_template, request
+from reports.forms import ReportForm
 
 # Create your views here.
 class RegisterListView(ListView):
@@ -51,7 +52,7 @@ def register_new(request):
 
 class RegisterUpdate(UpdateView):
     model = Register
-    fields = ['sub_category', 'description', 'status']
+    fields = ['sub_category', 'description']
     template_name_suffix = '_update_form'
     
     def get_form(self, form_class=None):
@@ -63,6 +64,20 @@ class RegisterUpdate(UpdateView):
     def get_success_url(self) -> str:
         return reverse_lazy('registers:update', args=[self.object.id]) + '?ok'
 
+def register_reported(request, pk):
+    register = Register.objects.filter(id=pk)
+    if request.method == "POST":
+        form = ReportForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.save()
+            Register.objects.filter(id=pk).update(reported=True)
+            return redirect('registers:registers')
+    else:
+        form = ReportForm()
+        print("entro 2")
+    return render(request, 'registers/register_reported.html', {'form': form, 'register': register})
 
 class RegisterDelete(DeleteView):
     model = Register

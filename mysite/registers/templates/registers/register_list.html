@@ -21,6 +21,7 @@
             <th scope="col">Descargar QR</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
+            <th scope="col">Reportar</th>
           </tr>
         </thead>
         <tbody>
@@ -35,7 +36,8 @@
             <td>{% if register.qr_code %}<img src="{{ register.qr_code.url }}" class="img-fluid">{% endif %}</td>
             <td><a onclick="downloadFile('{{ register.qr_code.url }}');" ><button type="button" class="btn btn-primary" id="btn" title="Descargar QR"><i class="fa fa-fw fa-download"></i></button></a></td>
             <td><a href="{% url 'registers:update' register.id %}"><button type="button" class="btn btn-secondary" title="Editar">Editar <i class="fa fa-fw fa-edit"></i></button></a></td>
-            <td><a href="{% url 'registers:delete' register.id %}"><button type="button" class="btn btn-danger" title="Elminar">Eliminar<i class="fa fa-fw fa-trash"></i></button></a></td>  
+            <td><a href="{% url 'registers:delete' register.id %}"><button type="button" class="btn btn-danger" title="Elminar">Eliminar<i class="fa fa-fw fa-trash"></i></button></a></td> 
+            <td>{% if register.reported == True %}<input name="reported" type="checkbox" checked="checked" style="transform: scale(2);" readonly="readonly" onclick="javascript: return false;"/>{% else %}<input name="reported" type="checkbox" style="transform: scale(2);" readonly="readonly" onclick="javascript: return false;"/> <a href="{% url 'registers:reported' register.id %}" class="mb-2 mt-2 ml-2"> Ir </a>{% endif %} </td>
           </tr>
           {% endif %}
           {% endfor %}

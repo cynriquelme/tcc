@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <h1 class="title" style="text-align: center; margin-top: 5px;">Últimos Reportes</h1>
+        <h1 class="title" style="text-align: center; margin-top: 5px;">Últimos reportes de mascotas y objetos</h1>
         <div class="row"> 
             {% for report in page_obj  %}
               {% if report.status == True %}
@@ -123,7 +123,7 @@
                     </li>
                 {% endif %}
                 {% for page_obj in page_obj.paginator %}
-                    <li class="page-item {% if page_obj.number == page_obj %}active{% endif %}">
+                    <li class="page-item">
                         <a href="?page={{ page_obj.number }}" class="page-link">{{ page_obj.number }}</a>
                     </li>
                 {% endfor %}

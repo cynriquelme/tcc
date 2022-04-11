@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.conf import settings
 from django.contrib.auth.models import User
 from crud.models import TypeReport, SubCategory
+from registers.models import Register
 from django.db import models
 from encrypted_model_fields.fields import EncryptedCharField
 
@@ -25,6 +26,8 @@ class Report(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Usuario")
     create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
+    register  = models.CharField(verbose_name="Registro", blank=True, max_length=50)
+    
 
     class Meta:
         verbose_name = 'Reporte'

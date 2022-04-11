@@ -13,16 +13,17 @@ class Register(models.Model):
     description = models.CharField(max_length=600, verbose_name="Descripción", unique=True)
     qr_code = models.ImageField(verbose_name= "", upload_to='qr_codes',null=False, blank=True,validators=[valid_extension])
     registration_date = models.DateField(auto_now_add=True, verbose_name="Fecha de Registro")
-    status = models.BooleanField(verbose_name="Activo", default=True, help_text="Indica si el registro está Activo o Inactivo.")
+    reported = models.BooleanField(verbose_name="Reportar", default=False, help_text="Indica si el registro ha sido extraviado.")
     sub_category = models.ForeignKey(SubCategory, on_delete=models.CASCADE, default=0, verbose_name="Sub Categoría")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="Usuario")
     create_date = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de creación")
     update_date = models.DateTimeField(auto_now=True, verbose_name="Fecha de modificación")
+    
 
     class Meta:
         verbose_name = 'Registro'
         verbose_name_plural = 'Registros'
-        ordering = ['create_date']
+        ordering = ['-registration_date','-user']
 
     def __str__(self):
         return self.description
