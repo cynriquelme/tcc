@@ -6,7 +6,6 @@
     <h1 style="text-align: center;">Registro</h1>
 {% endblock %}
 {% block content %}
-{% comment %} {% include 'registers/includes/register_menu.html'%} {% endcomment %}
 <div class="col-11 text-right">
   <a href="{% url 'registers:registers' %}"><button type="button" class="btn btn-primary" ><i class="fa fa-fw fa-angle-double-left "></i> Regresar</button></a>
 </div>
@@ -17,8 +16,7 @@
         <div>
           {% if 'ok' in request.GET %}
             <p style="color:green;"> Se ha actualizado correctamente.</p>
-          {% endif %}
-            
+          {% endif %} 
           <form action="" method="post">{% csrf_token %}
             <p for="{{form.sub_category.id_for_label}}" class="mb-2 mt-2"><b>{{form.sub_category.label}}</b></p>
             {{form.sub_category}}

@@ -31,7 +31,6 @@ urlpatterns = [
     path('location/<int:id>/', core_views.location, name="location"),
     path('registers/', include(registers_patterns)),
     path('reports/', include(reports_patterns)),
-    path('cities/', crud_views.list_cities, name='cities'),
     path('admin/', admin.site.urls),
     # Paths de Auth
     path('accounts/', include('django.contrib.auth.urls')),

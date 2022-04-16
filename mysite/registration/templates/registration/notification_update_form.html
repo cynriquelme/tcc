@@ -17,7 +17,6 @@
           {% if 'ok' in request.GET %}
             <p style="color:green;"> Se ha actualizado correctamente.</p>
           {% endif %}
-            
           <form action="" method="post">{% csrf_token %}
             <p class="mb-1 mt-2">De</p>
             <input type="text" value="{{notification.transmitter}}" class="form-control mt-3" readonly placeholder="Emisor">
